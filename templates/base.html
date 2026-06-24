@@ -82,6 +82,17 @@
     {% block content %}{% endblock %}
   </main>
 
+  <footer class="bg-white border-t border-gray-100 py-6 mt-auto shrink-0">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+      <div>
+        &copy; {{ current_year }} QuntrolSphere. All rights reserved.
+      </div>
+      <div class="flex space-x-6">
+        <span class="text-gray-400">Quantum Control Infrastructure Platforms</span>
+      </div>
+    </div>
+  </footer>
+
   <script>
     // Responsive Navbar Event Handler Logic
     const menuBtn = document.getElementById('mobileMenuBtn');
