@@ -9,6 +9,7 @@ from fastapi import FastAPI, Request, Form, File, UploadFile, Response
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+import uvicorn
 
 app = FastAPI()
 
@@ -26,10 +27,6 @@ templates = Jinja2Templates(directory="templates")
 # Fixed the deprecated utcnow call to use timezone-aware standard objects
 def get_utc_now():
     return datetime.datetime.now(datetime.timezone.utc)
-
-# FIXED: Replaced direct dictionary element writing with safe initialization update 
-# to support Jinja2 template caching engine mechanics under Python 3.14+ safely.
-templates.env.globals.update(now=get_utc_now)
 
 # Mock Product Database matching your services.html paths
 PRODUCTS = {
@@ -90,27 +87,25 @@ def send_automated_email(subject: str, html_body: str, to_email: str, reply_to_e
 
 # --- CORE APPLICATION ROUTING INFRASTRUCTURE ---
 
-# FIXED: Explicit HEAD interceptor responding to root queries with an un-bodied 200 OK.
-# Clears Render proxy routers from triggering 405 system deployment failure status metrics.
 @app.head("/")
 async def home_head():
     return Response(status_code=200)
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse("index.html", {"request": request, "now": get_utc_now})
 
 @app.get("/about", response_class=HTMLResponse)
 async def about(request: Request):
-    return templates.TemplateResponse("about.html", {"request": request})
+    return templates.TemplateResponse("about.html", {"request": request, "now": get_utc_now})
 
 @app.get("/services", response_class=HTMLResponse)
 async def services(request: Request):
-    return templates.TemplateResponse("services.html", {"request": request})
+    return templates.TemplateResponse("services.html", {"request": request, "now": get_utc_now})
 
 @app.get("/contact", response_class=HTMLResponse)
 async def contact_page(request: Request):
-    return templates.TemplateResponse("contact.html", {"request": request})
+    return templates.TemplateResponse("contact.html", {"request": request, "now": get_utc_now})
 
 @app.post("/contact")
 async def handle_contact(
@@ -121,7 +116,6 @@ async def handle_contact(
     message: str = Form(...)
 ):
     try:
-        # 1. Internal Notification (Sent to your team)
         subject_internal = f"[CONTACT INQUIRY] - Technical Lead from {name}"
         html_internal = f"""
         <html>
@@ -141,7 +135,6 @@ async def handle_contact(
         """
         send_automated_email(subject_internal, html_internal, to_email=COMPANY_INBOX, reply_to_email=email)
 
-        # 2. Short Auto-Response (Sent directly to the client via clean utility helper method)
         subject_client = "Thank you for contacting QuntrolSphere"
         html_client = f"""
         <html>
@@ -176,7 +169,6 @@ async def handle_quote(
     organization: str = Form(...)
 ):
     try:
-        # 1. Internal Notification (Sent to company inbox)
         subject_internal = f"[QUOTE REQUEST] - {product} - From {name}"
         html_internal = f"""
         <html>
@@ -195,7 +187,6 @@ async def handle_quote(
         """
         send_automated_email(subject_internal, html_internal, to_email=COMPANY_INBOX, reply_to_email=email)
 
-        # 2. Short Auto-Response (Sent directly to the client via clean utility helper method)
         subject_client = f"Quote Request Received: {product}"
         html_client = f"""
         <html>
@@ -226,12 +217,12 @@ async def product_page(request: Request, product_id: str):
     product = PRODUCTS.get(product_id)
     if not product:
         return HTMLResponse(content="Product Not Found", status_code=404)
-    return templates.TemplateResponse("product.html", {"request": request, "product": product})
+    return templates.TemplateResponse("product.html", {"request": request, "product": product, "now": get_utc_now})
 
 
 @app.get("/thanks", response_class=HTMLResponse)
 async def thanks(request: Request):
-    return templates.TemplateResponse("thanks.html", {"request": request})
+    return templates.TemplateResponse("thanks.html", {"request": request, "now": get_utc_now})
 
 
 @app.post("/apply")
@@ -290,9 +281,7 @@ async def handle_application(
     return RedirectResponse(url="/thanks", status_code=303)
 
 
-# FIXED: Added standard global network interface bind handler so if called directly,
-# it automatically binds to 0.0.0.0 and grabs Render's allocated infrastructure port.
 if __name__ == "__main__":
-    import uvicorn
+    
     prod_port = int(os.environ.get("PORT", 8000))
     uvicorn.run("main:app", host="0.0.0.0", port=prod_port)
