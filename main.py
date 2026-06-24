@@ -96,15 +96,15 @@ async def home(request: Request):
 
 @app.get("/about", response_class=HTMLResponse)
 async def about(request: Request):
-    return templates.TemplateResponse("about.html", {"request": request, "current_year": get_current_year()})
+    return templates.TemplateResponse(request, "about.html", {"current_year": get_current_year()})
 
 @app.get("/services", response_class=HTMLResponse)
 async def services(request: Request):
-    return templates.TemplateResponse("services.html", {"request": request, "current_year": get_current_year()})
+    return templates.TemplateResponse(request, "services.html", {"current_year": get_current_year()})
 
 @app.get("/contact", response_class=HTMLResponse)
 async def contact_page(request: Request):
-    return templates.TemplateResponse("contact.html", {"request": request, "current_year": get_current_year()})
+    return templates.TemplateResponse(request, "contact.html", {"current_year": get_current_year()})
 
 @app.post("/contact")
 async def handle_contact(
