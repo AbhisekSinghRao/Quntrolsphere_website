@@ -216,12 +216,13 @@ async def product_page(request: Request, product_id: str):
     product = PRODUCTS.get(product_id)
     if not product:
         return HTMLResponse(content="Product Not Found", status_code=404)
-    return templates.TemplateResponse("product.html", {"request": request, "product": product, "current_year": get_current_year()})
-
+    
+    return templates.TemplateResponse(request, "product.html", {"product": product, "current_year": get_current_year()})
 
 @app.get("/thanks", response_class=HTMLResponse)
 async def thanks(request: Request):
-    return templates.TemplateResponse("thanks.html", {"request": request, "current_year": get_current_year()})
+    return templates.TemplateResponse(request, "thanks.html", {"current_year": get_current_year()})
+
 
 
 @app.post("/apply")
