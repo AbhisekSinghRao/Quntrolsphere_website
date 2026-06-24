@@ -5,7 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-from fastapi import FastAPI, Request, Form, File, UploadFile
+from fastapi import FastAPI, Request, Form, File, UploadFile, Response
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -70,7 +70,6 @@ PRODUCTS = {
 }
 
 # --- FIXED REUSABLE SECURE SMTP DISPATCHER ---
-# Now accepts a explicit 'to_email' so it handles both internal alerts and client receipts
 def send_automated_email(subject: str, html_body: str, to_email: str, reply_to_email: str = None):
     """Establishes safe TLS connections and handles transactional body delivery."""
     msg = MIMEMultipart("alternative")
@@ -89,6 +88,12 @@ def send_automated_email(subject: str, html_body: str, to_email: str, reply_to_e
 
 
 # --- CORE APPLICATION ROUTING INFRASTRUCTURE ---
+
+# FIX: Added a clean explicit HEAD method endpoint mapping on root path.
+# This interceptor returns a blank 200 OK headers block to clear Render's automated platform checker.
+@app.head("/")
+async def home_head():
+    return Response(status_code=200)
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
@@ -238,7 +243,6 @@ async def handle_application(
     resume: UploadFile = File(...)
 ):
     try:
-        # Multi-part setup is used here manually to process attached resume documents
         msg = MIMEMultipart()
         msg['From'] = COMPANY_INBOX
         msg['To'] = COMPANY_INBOX
