@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="grid md:grid-cols-2 gap-10 items-center">
+
+  <!-- Product Image -->
+  <div>
+    <img src="/static/images/{{ image }}" class="rounded shadow-lg">
+  </div>
+
+  <!-- Product Details -->
+  <div>
+    <h2 class="text-3xl font-bold mb-4">{{ name }}</h2>
+    <p class="text-gray-600 mb-6">
+      {{ description }}
+    </p>
+
+    <a href="/services"
+       class="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700">
+       Back to Services
+    </a>
+  </div>
+
+</div>
+
+{% endblock %}

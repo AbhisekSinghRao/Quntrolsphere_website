@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuntrolSphere | Quantum Control Electronics</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>
+    /* Prevent duplicate scrollbars across the whole site application framework */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      background-color: #f9fafb;
+    }
+    
+    /* FIXED: Changed overflow from hidden to allow natural vertical scrolling on desktop */
+    @media (min-width: 768px) {
+      html, body {
+        overflow-y: auto;
+        min-height: 100%;
+      }
+    }
+
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ""; position: absolute; width: 0%; height: 2px;
+      left: 0; bottom: -4px; background: #2563eb; transition: 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; }
+    
+    .card-hover { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+    .card-hover:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.08);
+      background: linear-gradient(145deg, #ffffff, #fbfcdb/10, #f0f4ff);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen font-sans antialiased text-gray-900 relative">
+
+  <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100 h-[72px] flex items-center shrink-0">
+    <div class="w-full max-w-7xl mx-auto px-6 flex flex-row justify-between items-center relative">
+      
+      <a href="/" class="block z-50">
+        <img src="/static/images/QuntrolSphere_logo_black.png" class="h-10 w-auto" alt="QuntrolSphere Logo" onerror="this.style.display='none'">
+      </a>
+
+      <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-600" aria-label="Main Navigation">
+        <a href="/" class="nav-link hover:text-blue-600 transition-colors">Home</a>
+        <a href="/about" class="nav-link hover:text-blue-600 transition-colors">About</a>
+        <a href="/services" class="nav-link hover:text-blue-600 transition-colors">Services</a>
+        <a href="/contact" class="nav-link hover:text-blue-600 transition-colors">Contact</a>
+      </nav>
+      
+      <div class="hidden md:flex items-center">
+        <a href="/contact" class="bg-blue-600 text-white text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-blue-700 shadow-sm shadow-blue-600/10 transition-all">
+          Request Quote
+        </a>
+      </div>
+
+      <button id="mobileMenuBtn" class="block md:hidden text-gray-600 focus:outline-none z-50 p-2" aria-label="Toggle Navigation Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="menuIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+
+      <div id="mobileMenu" class="hidden absolute top-[52px] left-0 w-full bg-white/95 backdrop-blur-md border-b border-gray-200 flex flex-col p-6 space-y-4 shadow-xl z-40 transition-all duration-300">
+        <a href="/" class="text-gray-700 font-semibold text-lg border-b border-gray-50 pb-2 hover:text-blue-600">Home</a>
+        <a href="/about" class="text-gray-700 font-semibold text-lg border-b border-gray-50 pb-2 hover:text-blue-600">About</a>
+        <a href="/services" class="text-gray-700 font-semibold text-lg border-b border-gray-50 pb-2 hover:text-blue-600">Services</a>
+        <a href="/contact" class="text-gray-700 font-semibold text-lg border-b border-gray-50 pb-2 hover:text-blue-600">Contact</a>
+        <a href="/contact" class="bg-blue-600 text-white text-center font-bold py-3 rounded-xl shadow-lg shadow-blue-600/20">Request Quote</a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="flex-grow w-full">
+    {% block content %}{% endblock %}
+  </main>
+
+  <script>
+    // Responsive Navbar Event Handler Logic
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+
+    menuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      if (!isHidden) {
+        // Toggle into an "X" close symbol state
+        menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+      } else {
+        // Toggle back to normal hamburger state lines
+        menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+      }
+    });
+  </script>
+</body>
+</html>

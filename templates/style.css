@@ -1,0 +1,268 @@
+/* Fluid Interfacing Foundations */
+@keyframes structuralFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: structuralFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Pulse Glow Effects for Elements */
+@keyframes networkPulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.4; }
+}
+
+.quantum-grid-overlay {
+  animation: networkPulse 8s ease-in-out infinite;
+}
+
+/* ===================================
+   GRID ANIMATION
+=================================== */
+
+.grid-animation {
+    opacity: .1;
+    background-image:
+        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+
+    background-size: 30px 30px;
+
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 30px 30px;
+    }
+}
+
+/* ===================================
+   FLOATING ORBS
+=================================== */
+
+@keyframes float {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-25px);
+    }
+}
+
+.animate-float {
+    animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+    animation: float 12s ease-in-out infinite;
+}
+
+/* ===================================
+   PULSE RING
+=================================== */
+
+.quantum-ring {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+    border: 1px solid rgba(59,130,246,.25);
+
+    transform: translate(-50%, -50%);
+    animation: pulseRing 5s infinite;
+}
+
+@keyframes pulseRing {
+
+    0% {
+        transform: translate(-50%, -50%) scale(.8);
+        opacity: .8;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.8);
+        opacity: 0;
+    }
+}
+
+/* ===================================
+   PARTICLES
+=================================== */
+
+.particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.particles span {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 0 10px #3b82f6,
+        0 0 20px #3b82f6;
+
+    animation: particleMove linear infinite;
+}
+
+.particles span:nth-child(1){left:5%;animation-duration:15s;}
+.particles span:nth-child(2){left:15%;animation-duration:18s;}
+.particles span:nth-child(3){left:25%;animation-duration:14s;}
+.particles span:nth-child(4){left:35%;animation-duration:22s;}
+.particles span:nth-child(5){left:45%;animation-duration:17s;}
+.particles span:nth-child(6){left:55%;animation-duration:20s;}
+.particles span:nth-child(7){left:65%;animation-duration:13s;}
+.particles span:nth-child(8){left:75%;animation-duration:19s;}
+.particles span:nth-child(9){left:85%;animation-duration:16s;}
+.particles span:nth-child(10){left:95%;animation-duration:21s;}
+.particles span:nth-child(11){left:50%;animation-duration:14s;}
+.particles span:nth-child(12){left:70%;animation-duration:18s;}
+
+@keyframes particleMove {
+
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* ===================================
+   FADE UP ANIMATIONS
+=================================== */
+
+.hero-badge {
+    opacity: 0;
+    animation: fadeUp .8s forwards;
+}
+
+.hero-title {
+    opacity: 0;
+    animation: fadeUp 1s forwards;
+    animation-delay: .2s;
+}
+
+.hero-description {
+    opacity: 0;
+    animation: fadeUp 1s forwards;
+    animation-delay: .5s;
+}
+
+.hero-buttons {
+    opacity: 0;
+    animation: fadeUp 1s forwards;
+    animation-delay: .8s;
+}
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================
+   SHIMMER BUTTON
+=================================== */
+
+.hero-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-btn::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -150%;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.35),
+            transparent
+        );
+
+    transition: .8s;
+}
+
+.hero-btn:hover::before {
+    left: 150%;
+}
+
+/* ===================================
+   TITLE GLOW
+=================================== */
+
+.hero-title {
+    text-shadow:
+        0 0 20px rgba(59,130,246,.3),
+        0 0 40px rgba(59,130,246,.15);
+}
+
+/* ===================================
+   CURSOR GLOW
+=================================== */
+
+.cursor-glow {
+
+    position: absolute;
+
+    width: 400px;
+    height: 400px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(59,130,246,.18),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}

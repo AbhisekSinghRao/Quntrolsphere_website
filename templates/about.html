@@ -1,0 +1,299 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .tab-btn[aria-selected="true"] {
+    border-color: #2563eb; /* Tailwind blue-600 */
+    color: #2563eb;
+    font-weight: 600;
+  }
+  .tab-content {
+    display: none;
+  }
+  .tab-content.active {
+    display: block;
+    animation: tabFadeIn 0.4s ease-in-out;
+  }
+  @keyframes tabFadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<div class="w-full block h-auto min-h-screen bg-gray-50/30 px-4 py-8">
+  <div class="max-w-6xl mx-auto">
+    
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight mb-4">About QuntrolSphere</h1>
+      <p class="text-gray-500 text-base">
+        Advancing the frontiers of quantum and allied technologies through integrated research, precision manufacturing, and high-performance system engineering for a secure, scalable future.
+      </p>
+    </div>
+
+    <div class="border-b border-gray-200 mb-12 overflow-x-auto whitespace-nowrap">
+      <nav class="flex space-x-8 justify-center min-w-max px-2" aria-label="Tabs">
+        <button onclick="switchTab(event, 'company-tab')" aria-selected="true" class="tab-btn border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-all outline-none">
+          Company Overview
+        </button>
+        <button onclick="switchTab(event, 'tech-tab')" aria-selected="false" class="tab-btn border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-all outline-none">
+          Technology & Infrastructure
+        </button>
+        <button onclick="switchTab(event, 'operations-tab')" aria-selected="false" class="tab-btn border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-all outline-none">
+          Global Operations
+        </button>
+        <button onclick="switchTab(event, 'careers-tab')" aria-selected="false" class="tab-btn border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 transition-all outline-none flex items-center">
+          Careers & Openings
+          <span class="ml-2 px-2 py-0.5 text-xs font-semibold bg-blue-100 text-blue-700 rounded-full">3</span>
+        </button>
+      </nav>
+    </div>
+
+    <div id="company-tab" class="tab-content active w-full block h-auto clear-both" role="tabpanel">
+      
+      <div class="text-left mb-12 max-w-full">
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">Our Objective</h2>
+        <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+          QuntrolSphere aims to be a leading organisation in quantum and allied technologies by focusing on the research, development, manufacturing, services, deployment and integration of innovative, high-performance systems and solutions. We are committed to manufacturing and services towards the design and development of software, electronics, and systems for quantum and other deep technologies. Through continued focus on excellence, QuntrolSphere strives to advance the real-world applications of quantum and allied technologies.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-16">
+        
+        <div class="space-y-4 text-left">
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Core Activities</h3>
+          <div class="space-y-3 text-sm sm:text-base text-gray-600">
+            <p class="leading-relaxed"><strong class="text-gray-900 block sm:inline sm:mr-1">Research &amp; Development (R&amp;D):</strong> Advancing baseband &amp; RF electronics, optics, photonics, optoelectronics, control systems, and strategic technologies through structured implementation.</p>
+            <p class="leading-relaxed"><strong class="text-gray-900 block sm:inline sm:mr-1">Product Design &amp; Manufacturing:</strong> Engineering sophisticated, secure, and high-performance systems tailored to critical demands in the global market.</p>
+            <p class="leading-relaxed"><strong class="text-gray-900 block sm:inline sm:mr-1">Consulting &amp; Technology Services:</strong> Providing expert technical advisory, assessments, and contract lifecycle research to seamlessly integrate advanced systems.</p>
+            <p class="leading-relaxed"><strong class="text-gray-900 block sm:inline sm:mr-1">System Integration &amp; Deployment:</strong> Delivering turnkey infrastructure solutions and collaborating with sub-component OEMs to build integrated hardware systems.</p>
+            <p class="leading-relaxed"><strong class="text-gray-900 block sm:inline sm:mr-1">Innovation, Upgrades &amp; Training:</strong> Continually evolving platforms to remain ahead of the curve while offering targeted educational initiatives to build human resources.</p>
+            <p class="leading-relaxed"><strong class="text-gray-900 block sm:inline sm:mr-1">Collaborative Partnerships:</strong> Engaging with universities, R&amp;D labs, government bodies, PSUs, and industry partners to ensure robust, globally aligned solutions.</p>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white p-8 rounded-xl shadow-md border border-blue-900/30 text-left lg:mt-9">
+          <span class="inline-block px-2.5 py-1 rounded-md text-[10px] font-bold tracking-wider bg-blue-500/20 text-blue-300 uppercase mb-4">Future Roadmap</span>
+          <h3 class="text-2xl font-bold mb-3">Distributed Quantum Computing</h3>
+          <p class="text-sm text-slate-300 leading-relaxed mb-4">
+            Our ultimate long-term frontier centers on scalability. By leveraging our deep expertise in high-speed control electronics, picosecond synchronization pipelines, and secure quantum networks, QuntrolSphere is engineering the precise control channels needed to link separate Quantum Processing Units (QPUs).
+          </p>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            This groundwork will enable cluster-based, multi-node quantum scaling—preserving quantum coherence across optical networks to handle the next generation of computation challenges.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="border-t border-gray-200/60 pt-12 pb-12 w-full block">
+        <h3 class="text-2xl font-bold text-gray-900 text-center mb-10">Leadership Team</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm text-center">
+            <img src="/static/images/Abhishek.png" class="w-24 h-24 object-cover rounded-full mx-auto mb-4 border-2 border-gray-100" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'" alt="Abhishek Singh Rao">
+            <h4 class="font-bold text-gray-900">Abhishek Singh Rao</h4>
+            <p class="text-sm text-blue-600 font-medium">Director</p>
+          </div>
+          <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm text-center">
+            <img src="/static/images/Ashutosh.png" class="w-24 h-24 object-cover rounded-full mx-auto mb-4 border-2 border-gray-100" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'" alt="Ashutosh Rao">
+            <h4 class="font-bold text-gray-900">Ashutosh Rao</h4>
+            <p class="text-sm text-blue-600 font-medium">Director</p>
+          </div>
+          <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm text-center">
+            <img src="/static/images/Razin.png" class="w-24 h-24 object-cover rounded-full mx-auto mb-4 border-2 border-gray-100" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'" alt="Mohd Razin Asfaque">
+            <h4 class="font-bold text-gray-900">Mohd Razin Asfaque</h4>
+            <p class="text-sm text-blue-600 font-medium">Director</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="tech-tab" class="tab-content" role="tabpanel">
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm text-left">
+          <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center font-bold mb-4">01</div>
+          <h3 class="text-lg font-bold text-gray-900 mb-3">Baseband &amp; RF Electronics</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Meticulous engineering layouts focused on ultra-precise baseband systems and high-frequency radio frequency (RF) electronics, driving clean control signal processing paths for deep-tech instrumentation.
+          </p>
+        </div>
+        <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm text-left">
+          <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center font-bold mb-4">02</div>
+          <h3 class="text-lg font-bold text-gray-900 mb-3">Optics &amp; Photonics Staging</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Advanced validation paths and isolation platforms optimized for sophisticated optoelectronics, optical alignment parameters, and robust single-photon tracking systems.
+          </p>
+        </div>
+        <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm text-left">
+          <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center font-bold mb-4">03</div>
+          <h3 class="text-lg font-bold text-gray-900 mb-3">Control Systems &amp; Software</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Co-designing tight hardware-software loops to deliver deterministic, high-performance control systems tailored to secure, upcoming strategic platforms.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white border border-gray-100 rounded-xl p-8 shadow-sm text-left mb-12">
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Technical Capabilities &amp; Infrastructure Mandate</h3>
+        <p class="text-sm text-gray-500 mb-8">Our core R&amp;D framework handles full-scale engineering lifecycles—from abstract software models to manufacturing physical, market-ready hardware systems:</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+          <div class="flex items-start gap-3">
+            <span class="text-blue-600 mt-0.5">✔</span>
+            <div>
+              <strong class="text-gray-900 block mb-0.5">Full Technology Development Lifecycle:</strong>
+              <span class="text-gray-600">Equipped to handle everything from planning and contract design to manufacturing, production validation, and field deployment.</span>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-blue-600 mt-0.5">✔</span>
+            <div>
+              <strong class="text-gray-900 block mb-0.5">Turnkey System Integration:</strong>
+              <span class="text-gray-600">Dedicated labs built to act as an integration hub, combining custom components with global OEM hardware to verify target system performance specifications.</span>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-blue-600 mt-0.5">✔</span>
+            <div>
+              <strong class="text-gray-900 block mb-0.5">Continual Platform Innovation:</strong>
+              <span class="text-gray-600">A structured workflow dedicated to updating and modifying existing solutions, keeping our infrastructure ahead of the global technological curve.</span>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-blue-600 mt-0.5">✔</span>
+            <div>
+              <strong class="text-gray-900 block mb-0.5">Collaborative Network Nodes:</strong>
+              <span class="text-gray-600">Active secure lines and computational tools linked directly with universities, research labs, and Public Sector Units to ensure shared architectural relevance.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="operations-tab" class="tab-content" role="tabpanel">
+      <div class="bg-white border border-gray-100 rounded-xl p-8 shadow-sm max-w-3xl mx-auto text-left mb-12">
+        <h3 class="text-xl font-bold text-gray-900 mb-6">Corporate Registry & Operations</h3>
+        <div class="space-y-6 text-sm">
+          <div class="grid grid-cols-3 border-b border-gray-100 pb-4">
+            <span class="font-semibold text-gray-500">Corporate Office</span>
+            <span class="col-span-2 text-gray-700 font-medium">Chennai, Tamil Nadu, India</span>
+          </div>
+          <div class="grid grid-cols-3 border-b border-gray-100 pb-4">
+            <span class="font-semibold text-gray-500">Industry Sector</span>
+            <span class="col-span-2 text-gray-700 font-medium">Quantum Technology, Deep-Tech Electronics, Instrumentation</span>
+          </div>
+          <div class="grid grid-cols-3">
+            <span class="font-semibold text-gray-500">Global Engagement</span>
+            <span class="col-span-2 text-gray-700 leading-relaxed">
+              Partnering directly with global academic labs, national research organizations, and secure aerospace network designers.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="careers-tab" class="tab-content" role="tabpanel">
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <h3 class="text-2xl font-bold text-gray-900 mb-2">Join the Future of Quantum Tech</h3>
+        <p class="text-gray-500 text-sm">We are actively expanding our elite core architecture team in Chennai. Explore our active technical vacancies below.</p>
+      </div>
+
+      <div class="space-y-4 max-w-4xl mx-auto text-left mb-12">
+        <div class="bg-white border border-gray-100 p-6 rounded-xl shadow-sm flex flex-col sm:flex-row justify-between sm:items-center gap-4 hover:border-blue-500 transition-colors">
+          <div>
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 mb-2">Full-Time</span>
+            <h4 class="text-lg font-bold text-gray-900">Senior FPGA Hardware Engineer</h4>
+            <p class="text-gray-500 text-xs sm:text-sm mt-1">Location: Chennai • Experience: 4+ Years • Skillsets: VHDL, Verilog, Vivado</p>
+          </div>
+          <button onclick="openApplyModal('Senior FPGA Hardware Engineer')" class="bg-gray-900 text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-lg hover:bg-gray-800 transition text-center whitespace-nowrap">Apply Now</button>
+        </div>
+        <div class="bg-white border border-gray-100 p-6 rounded-xl shadow-sm flex flex-col sm:flex-row justify-between sm:items-center gap-4 hover:border-blue-500 transition-colors">
+          <div>
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 mb-2">Full-Time</span>
+            <h4 class="text-lg font-bold text-gray-900">Quantum Photonics Engineer</h4>
+            <p class="text-gray-500 text-xs sm:text-sm mt-1">Location: Chennai • Experience: PhD / Master's • Skillsets: Optics, Laser systems</p>
+          </div>
+          <button onclick="openApplyModal('Quantum Photonics Engineer')" class="bg-gray-900 text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-lg hover:bg-gray-800 transition text-center whitespace-nowrap">Apply Now</button>
+        </div>
+        <div class="bg-white border border-gray-100 p-6 rounded-xl shadow-sm flex flex-col sm:flex-row justify-between sm:items-center gap-4 hover:border-blue-500 transition-colors">
+          <div>
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-50 text-purple-700 mb-2">Full-Time</span>
+            <h4 class="text-lg font-bold text-gray-900">Embedded Systems & Control Engineer</h4>
+            <p class="text-gray-500 text-xs sm:text-sm mt-1">Location: Chennai • Experience: 2+ Years • Skillsets: C/C++, RTOS, Microcontrollers</p>
+          </div>
+          <button onclick="openApplyModal('Embedded Systems & Control Engineer')" class="bg-gray-900 text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-lg hover:bg-gray-800 transition text-center whitespace-nowrap">Apply Now</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="apply-modal" onclick="handleOutsideClick(event)" class="fixed inset-0 z-50 hidden bg-black bg-opacity-60 flex items-center justify-center p-4 backdrop-blur-sm">
+  <div class="bg-white w-full max-w-lg rounded-xl shadow-2xl overflow-hidden transform transition-all">
+    <div class="bg-gray-900 text-white px-6 py-4 flex justify-between items-center text-left">
+      <div>
+        <h3 class="text-lg font-bold">Submit Application</h3>
+        <p id="modal-role-name" class="text-xs text-blue-400 font-medium mt-0.5"></p>
+      </div>
+      <button onclick="closeApplyModal()" class="text-gray-400 hover:text-white text-xl outline-none" aria-label="Close modal">✕</button>
+    </div>
+    <form action="/apply" method="post" enctype="multipart/form-data" class="p-6 space-y-4 text-left">
+      <input type="hidden" id="modal-job-title" name="job_title">
+      <div>
+        <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Full Name</label>
+        <input type="text" name="name" placeholder="John Doe" class="w-full border border-gray-200 p-2.5 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" required>
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Email Address</label>
+        <input type="email" name="email" placeholder="john.doe@university.com" class="w-full border border-gray-200 p-2.5 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" required>
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Highest Education / Degree</label>
+        <input type="text" name="education" placeholder="M.Tech in Microelectronics / PhD in Physics" class="w-full border border-gray-200 p-2.5 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" required>
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Professional Overview / Statement</label>
+        <textarea name="summary" rows="3" placeholder="Briefly introduce your relevant technical expertise..." class="w-full border border-gray-200 p-2.5 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" required></textarea>
+      </div>
+      <div>
+        <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1">Upload Resume (PDF format only)</label>
+        <input type="file" name="resume" accept=".pdf" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer" required>
+      </div>
+      <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-colors shadow-md mt-2">
+        Submit Application Dossier
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openApplyModal(roleName) {
+    document.getElementById('modal-role-name').innerText = roleName;
+    document.getElementById('modal-job-title').value = roleName;
+    document.getElementById('apply-modal').classList.remove('hidden');
+  }
+  function closeApplyModal() {
+    document.getElementById('apply-modal').classList.add('hidden');
+  }
+  function handleOutsideClick(event) {
+    if (event.target.id === 'apply-modal') {
+      closeApplyModal();
+    }
+  }
+  function switchTab(event, tabId) {
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(content => content.classList.remove('active'));
+
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => {
+      btn.setAttribute('aria-selected', 'false');
+    });
+
+    document.getElementById(tabId).classList.add('active');
+    event.currentTarget.setAttribute('aria-selected', 'true');
+  }
+</script>
+
+{% endblock %}

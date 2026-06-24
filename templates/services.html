@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="max-w-6xl mx-auto px-4 py-8">
+  <div class="text-center max-w-2xl mx-auto mb-16">
+    <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight mb-4">Products &amp; Framework Modules</h1>
+    <p class="text-gray-500 text-sm sm:text-base">Production-grade hardware catalogs designed for quantum communication networks, control architectures, and high-precision research grids.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    
+    <a href="/product/qubit-primer" class="group bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-blue-500/20 transition-all duration-300 flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-start mb-3">
+          <span class="text-[10px] font-bold text-emerald-600 uppercase tracking-wider bg-emerald-50 px-2.5 py-0.5 rounded-full">Quantum Communication Node</span>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">QKD Networks Primer Kit</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Hands-on Quantum Key Distribution deployment and evaluation platform. Supports comprehensive Coherent One-Way (COW) protocol experiments, optical alignments, and secure key distillation pipelines.</p>
+      </div>
+      <span class="text-xs font-semibold text-blue-600 inline-flex items-center mt-2">
+        Explore Node Specifications <span class="transform group-hover:translate-x-1 transition-transform ml-1">&rarr;</span>
+      </span>
+    </a>
+
+    <a href="/product/qkd-node" class="group bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-blue-500/20 transition-all duration-300 flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-start mb-3">
+          <span class="text-[10px] font-bold text-emerald-600 uppercase tracking-wider bg-emerald-50 px-2.5 py-0.5 rounded-full">Quantum Node Hardware</span>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">QKD Node</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Scalable network infrastructure designed for secure key exchange, phase matching, and stable link distribution across dedicated fiber setups. Technical specifications and architecture metrics will be available soon.</p>
+      </div>
+      <span class="text-xs font-semibold text-blue-600 inline-flex items-center mt-2">
+        Explore Node Specifications <span class="transform group-hover:translate-x-1 transition-transform ml-1">&rarr;</span>
+      </span>
+    </a>
+
+    <a href="/product/qcc-board" class="group bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-blue-500/20 transition-all duration-300 flex flex-col justify-between">
+      <div>
+        <div class="mb-3">
+          <span class="text-[10px] font-bold text-indigo-600 uppercase tracking-wider bg-indigo-50 px-2.5 py-0.5 rounded-full">Control Electronics Pipeline</span>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">QCC: Indigenous FPGA Board</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Bespoke, indigenous high-performance FPGA architecture engineered exclusively for real-time quantum communication protocol orchestration and hardware acceleration.</p>
+      </div>
+      <span class="text-xs font-semibold text-blue-600 inline-flex items-center mt-2">
+        Explore Architecture Specifications <span class="transform group-hover:translate-x-1 transition-transform ml-1">&rarr;</span>
+      </span>
+    </a>
+
+    <a href="/product/fmc-card" class="group bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-blue-500/20 transition-all duration-300 flex flex-col justify-between">
+      <div>
+        <div class="mb-3">
+          <span class="text-[10px] font-bold text-indigo-600 uppercase tracking-wider bg-indigo-50 px-2.5 py-0.5 rounded-full">Mezzanine Interface</span>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">Custom FPGA Mezzanine Card (FMC)</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">High-density mezzanine expansion layout optimized for Xilinx ZCU102 ecosystems, managing precise time-to-digital conversions and single-photon detector interfaces.</p>
+      </div>
+      <span class="text-xs font-semibold text-blue-600 inline-flex items-center mt-2">
+        Explore Architecture Specifications <span class="transform group-hover:translate-x-1 transition-transform ml-1">&rarr;</span>
+      </span>
+    </a>
+
+    <a href="/product/merlin-ip" class="group bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-blue-500/20 transition-all duration-300 flex flex-col justify-between">
+      <div>
+        <div class="mb-3">
+          <span class="text-[10px] font-bold text-indigo-600 uppercase tracking-wider bg-indigo-50 px-2.5 py-0.5 rounded-full">Synchronization IP</span>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">MERLIN Synchronization Engine</h3>
+        <p class="text-gray-500 text-sm leading-relaxed mb-4">Master clock lock engine providing sub-nanosecond distribution matrix arrays to maintain quantum state coherence across diverse physical hardware endpoints.</p>
+      </div>
+      <span class="text-xs font-semibold text-blue-600 inline-flex items-center mt-2">
+        Explore Architecture Specifications <span class="transform group-hover:translate-x-1 transition-transform ml-1">&rarr;</span>
+      </span>
+    </a>
+
+  </div>
+</div>
+
+{% endblock %}
