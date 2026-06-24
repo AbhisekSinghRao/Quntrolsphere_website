@@ -9,7 +9,6 @@ from fastapi import FastAPI, Request, Form, File, UploadFile, Response
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-import uvicorn
 
 app = FastAPI()
 
@@ -24,9 +23,9 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 templates = Jinja2Templates(directory="templates")
 
-# Fixed the deprecated utcnow call to use timezone-aware standard objects
-def get_utc_now():
-    return datetime.datetime.now(datetime.timezone.utc)
+def get_current_year():
+    """Returns the current string year safely passed into footer rendering variables."""
+    return str(datetime.datetime.now(datetime.timezone.utc).year)
 
 # Mock Product Database matching your services.html paths
 PRODUCTS = {
@@ -93,19 +92,19 @@ async def home_head():
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request, "now": get_utc_now})
+    return templates.TemplateResponse("index.html", {"request": request, "current_year": get_current_year()})
 
 @app.get("/about", response_class=HTMLResponse)
 async def about(request: Request):
-    return templates.TemplateResponse("about.html", {"request": request, "now": get_utc_now})
+    return templates.TemplateResponse("about.html", {"request": request, "current_year": get_current_year()})
 
 @app.get("/services", response_class=HTMLResponse)
 async def services(request: Request):
-    return templates.TemplateResponse("services.html", {"request": request, "now": get_utc_now})
+    return templates.TemplateResponse("services.html", {"request": request, "current_year": get_current_year()})
 
 @app.get("/contact", response_class=HTMLResponse)
 async def contact_page(request: Request):
-    return templates.TemplateResponse("contact.html", {"request": request, "now": get_utc_now})
+    return templates.TemplateResponse("contact.html", {"request": request, "current_year": get_current_year()})
 
 @app.post("/contact")
 async def handle_contact(
@@ -217,12 +216,12 @@ async def product_page(request: Request, product_id: str):
     product = PRODUCTS.get(product_id)
     if not product:
         return HTMLResponse(content="Product Not Found", status_code=404)
-    return templates.TemplateResponse("product.html", {"request": request, "product": product, "now": get_utc_now})
+    return templates.TemplateResponse("product.html", {"request": request, "product": product, "current_year": get_current_year()})
 
 
 @app.get("/thanks", response_class=HTMLResponse)
 async def thanks(request: Request):
-    return templates.TemplateResponse("thanks.html", {"request": request, "now": get_utc_now})
+    return templates.TemplateResponse("thanks.html", {"request": request, "current_year": get_current_year()})
 
 
 @app.post("/apply")
@@ -282,6 +281,6 @@ async def handle_application(
 
 
 if __name__ == "__main__":
-    
+    import uvicorn
     prod_port = int(os.environ.get("PORT", 8000))
     uvicorn.run("main:app", host="0.0.0.0", port=prod_port)
