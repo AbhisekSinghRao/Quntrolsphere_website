@@ -63,6 +63,13 @@ PRODUCTS = {
         "images": ["pattern_gen.png"],
         "brochure": "pattern_gen_brochure.pdf",
         "features": ["Multi-Gb/s data rates supported", "PRBS & User-defined sequences", "Electro-optic testing companion"]
+    },
+    "qkd-node": {
+        "name": "Industrial QKD Deployment Node",
+        "description": "Enterprise-grade hardware architecture designed for multi-topology quantum key distribution and secure infrastructure provisioning.",
+        "images": ["qkd_node.png", "qkd_node_rear.png"],
+        "brochure": "QKD_Node_Industrial_Specifications.pdf",
+        "features": ["Multi-topology support (linear, mesh, star)", "Fibre-based hardware core infrastructure", "Quantum-classical network orchestration layer"]
     }
 }
 
@@ -222,7 +229,6 @@ async def product_page(request: Request, product_id: str):
 @app.get("/thanks", response_class=HTMLResponse)
 async def thanks(request: Request):
     return templates.TemplateResponse(request, "thanks.html", {"current_year": get_current_year()})
-
 
 
 @app.post("/apply")
