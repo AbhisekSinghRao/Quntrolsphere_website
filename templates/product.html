@@ -108,35 +108,21 @@
             Control Electronics Pipeline
           </span>
           {% else %}
-          <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider bg-emerald-50 px-2.5 py-1 rounded-full">
-            Quantum Communication Node
-          </span>
-          {% endif %}
         </div>
 
         {% if 'merlin' in product.name|lower %}
         <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-4">MERLIN Synchronization IP</h1> 
-        <p class="text-gray-600 leading-relaxed text-justify mb-6">
-          MERLIN IP provides ultra-precise, long-distance board-to-board time synchronization architectures tailored specifically for distributed embedded endpoints. By distributing synchronized clock resources over optical fiber lines, it maps multiple distinct execution systems into a unified deterministic timing framework without drift anomalies.
-        </p>
-        
         <div class="bg-indigo-50/50 rounded-xl p-4 border border-indigo-100 mb-6">
-          <h4 class="text-xs font-bold text-indigo-800 uppercase tracking-wider mb-2">Control Subsystem Integration Metrics</h4>
           <p class="text-xs text-indigo-700 leading-relaxed">
-            Delivers sub-5 ns internal clock resolution combined with deterministic trigger skew tracking ($\le10$ ns) to orchestrate phase-locked event timestamping registers across long distance fiber lines.
+            MERLIN IP provides ultra-precise, long-distance board-to-board time synchronization architectures tailored specifically for distributed embedded endpoints. By distributing synchronized clock resources over optical fiber lines, it maps multiple distinct execution systems into a unified deterministic timing framework without drift anomalies.
           </p>
         </div>
 
         {% elif 'fmc' in product.name|lower or 'mezzanine' in product.name|lower %}
         <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-4">Custom FPGA Mezzanine Card (FMC)</h1> 
-        <p class="text-gray-600 leading-relaxed text-justify mb-6">
-          The Custom FPGA Mezzanine Card is a specialized High Pin Count (HPC) module engineered to transform generic evaluation arrays like the Xilinx UltraScale+ ZCU102 into application-focused, QKD-ready hardware platforms. It bridges the critical general-purpose evaluation gaps by providing missing timing, trigger control, and specialized hardware I/O.
-        </p>
-        
         <div class="bg-indigo-50/50 rounded-xl p-4 border border-indigo-100 mb-6">
-          <h4 class="text-xs font-bold text-indigo-800 uppercase tracking-wider mb-2">Control Subsystem Integration Metrics</h4>
           <p class="text-xs text-indigo-700 leading-relaxed">
-            Built with dedicated, firmware-reconfigurable paths to generate high-speed test stimuli, calibrate optical paths, and drive high-speed single photon detector gating configurations simultaneously.
+            The Custom FPGA Mezzanine Card is a specialized High Pin Count (HPC) module engineered to transform generic evaluation arrays like the Xilinx UltraScale+ ZCU102 into application-focused, QKD-ready hardware platforms. It bridges the critical general-purpose evaluation gaps by providing missing timing, trigger control, and specialized hardware I/O.
           </p>
         </div>
 
