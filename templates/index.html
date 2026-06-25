@@ -123,8 +123,7 @@
   <button onclick="scrollToSection(0)" class="w-3 h-3 rounded-full border-2 border-gray-400 bg-transparent transition-all duration-300 dot-active" title="Hero Overview"></button>
   <button onclick="scrollToSection(1)" class="w-3 h-3 rounded-full border-2 border-gray-400 bg-transparent transition-all duration-300" title="Core Competencies"></button>
   <button onclick="scrollToSection(2)" class="w-3 h-3 rounded-full border-2 border-gray-400 bg-transparent transition-all duration-300" title="Featured Hardware"></button>
-  <button onclick="scrollToSection(3)" class="w-3 h-3 rounded-full border-2 border-gray-400 bg-transparent transition-all duration-300" title="Distributed Infrastructure"></button>
-  <button onclick="scrollToSection(4)" class="w-3 h-3 rounded-full border-2 border-gray-400 bg-transparent transition-all duration-300" title="Consultation Network"></button>
+  <button onclick="scrollToSection(3)" class="w-3 h-3 rounded-full border-2 border-gray-400 bg-transparent transition-all duration-300" title="Consultation Network"></button>
 </div>
 
 <div class="snap-container w-full" id="mainSnapContainer">
@@ -192,16 +191,16 @@
           </div>
         </div>
 
-        <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm scroll-reveal">
-          <div class="flex items-center space-x-3 mb-3">
-            <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-sm">
-              02
+        <div class="group scroll-reveal delay-200 bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col justify-between hover:shadow-xl hover:border-indigo-500/30 transition-all duration-300">
+          <div>
+            <div class="w-11 h-11 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
             </div>
-            <h3 class="font-bold text-gray-900 text-lg">Universal Quantum Control Electronics</h3>
+            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors duration-300">2.Universal Control Electronics</h3>
+            <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
+              Engineering high-speed RF subsystems, complex baseband signal pipelines, picosecond master synchronization matrices, and multi-channel FPGA architectures built specifically to manipulate, read out, and scale fragile qubits across multiple computing modalities—including superconducting, atomic, and spin-based processors.
+            </p>
           </div>
-          <p class="text-gray-600 text-sm leading-relaxed">
-            Engineering high-speed RF subsystems, complex baseband signal pipelines, picosecond master synchronization matrices, and multi-channel FPGA architectures built specifically to manipulate, read out, and scale fragile qubits across multiple computing modalities—including superconducting, atomic, and spin-based processors.
-          </p>
         </div>
 
         <div class="group scroll-reveal delay-300 bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col justify-between hover:shadow-xl hover:border-purple-500/30 transition-all duration-300">
@@ -260,7 +259,7 @@
     <div class="bg-gray-50 border border-gray-100 rounded-2xl p-6 sm:p-10 max-w-7xl mx-auto w-full">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 scroll-reveal">
         <div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-2">Featured Hardware &amp; IP Solutions</h2>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-2">Featured Hardware & IP Solutions</h2>
           <p class="text-gray-500 text-xs sm:text-sm">Deployable infrastructure engineered to exceptional laboratory standards.</p>
         </div>
         <a href="/services" class="mt-4 md:mt-0 text-blue-600 font-semibold hover:text-blue-700 text-sm inline-flex items-center group">
@@ -330,93 +329,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="snap-section bg-white px-6">
-    <div class="max-w-7xl mx-auto w-full py-4">
-      
-      <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-12 scroll-reveal">
-        <span class="text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Core Engineering IP</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-3 tracking-tight">Distributed Quantum Infrastructure Technology</h2>
-        <p class="text-gray-500 text-xs sm:text-sm mt-2">Developing key hardware routing frameworks to capture global market transitions in deep-tech computing.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch mb-8">
-        <div class="bg-white p-6 sm:p-8 rounded-2xl border border-gray-100 shadow-sm space-y-4 flex flex-col justify-between scroll-reveal delay-100">
-          <div>
-            <h3 class="text-lg sm:text-xl font-bold text-gray-900 flex items-center">
-              <span class="w-2 h-6 bg-blue-600 rounded mr-2.5 shrink-0"></span> Universal Quantum Routing Layer
-            </h3>
-            <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mt-2">
-              Our control architecture addresses hardware heterogeneity across deep-tech computing nodes. By engineering co-designed interfaces for both <strong>Data Qubits</strong> (state retention arrays) and <strong>Communication Qubits</strong> (network routing paths), we unify microwave control and photonics into a cohesive processing framework.
-            </p>
-          </div>
-          <ul class="text-gray-500 text-[11px] sm:text-xs space-y-2 pt-4 border-t border-gray-100/70">
-            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">✔</span> Hardware framework modules with real-time multi-core processor blocks.</li>
-            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">✔</span> Indigenous error-correction FPGA IP cores to stabilize gate fidelity.</li>
-          </ul>
-        </div>
-
-        <div class="bg-white p-6 sm:p-8 rounded-2xl border border-gray-100 shadow-sm space-y-4 flex flex-col justify-between scroll-reveal delay-200">
-          <div>
-            <h3 class="text-lg sm:text-xl font-bold text-gray-900 flex items-center">
-              <span class="w-2 h-6 bg-indigo-600 rounded mr-2.5 shrink-0"></span> Quantum Networks Over Fiber
-            </h3>
-            <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mt-2">
-              Migrating deep technology systems out of isolated laboratories requires specialized optical transducers and secure interconnect physical setups. We deploy quantum network paths utilizing hybrid routing infrastructures to securely bridge high-speed classical synchronization and raw quantum links.
-            </p>
-          </div>
-          <ul class="text-gray-500 text-[11px] sm:text-xs space-y-2 pt-4 border-t border-gray-100/70">
-            <li class="flex items-start"><span class="text-indigo-500 mr-2 font-bold">✔</span> Complete protocol layouts for entanglement distribution and swapping.</li>
-            <li class="flex items-start"><span class="text-indigo-500 mr-2 font-bold">✔</span> Safe network paths linking separate Quantum Processing Units (QPUs).</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="bg-gray-950 text-white rounded-2xl p-5 sm:p-8 shadow-lg relative overflow-hidden scroll-reveal delay-300">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
-        <h4 class="text-sm font-bold mb-4 flex items-center text-blue-400 uppercase tracking-wider">Strategic Scaling Matrix Roadmap</h4>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-[11px] sm:text-sm border-collapse min-w-[580px]">
-            <thead>
-              <tr class="border-b border-gray-800 text-gray-400 font-semibold">
-                <th class="pb-2 w-1/4">Metric Scope</th>
-                <th class="pb-2 w-1/4">Step 1: Single Q.C.</th>
-                <th class="pb-2 w-1/4">Step 2: Quantum Farm</th>
-                <th class="pb-2 w-1/4">Step 3: Global Scale</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-800/40 text-gray-300">
-              <tr>
-                <td class="py-2.5 font-medium text-white">Target Node Links</td>
-                <td class="py-2.5 text-gray-400">Multiple Processors</td>
-                <td class="py-2.5 text-gray-400">Multiple Computers</td>
-                <td class="py-2.5 text-gray-400">Multiple Quantum Farms</td>
-              </tr>
-              <tr>
-                <td class="py-2.5 font-medium text-white">Hardware Heterogeneity</td>
-                <td class="py-2.5 text-gray-400">Absent / Moderate</td>
-                <td class="py-2.5 text-gray-400">Possible</td>
-                <td class="py-2.5 text-gray-400">Very likely &amp; expected</td>
-              </tr>
-              <tr>
-                <td class="py-2.5 font-medium text-white">Infrastructure Medium</td>
-                <td class="py-2.5 text-gray-400">Short range links</td>
-                <td class="py-2.5 text-gray-400">Medium range fiber paths</td>
-                <td class="py-2.5 text-gray-400">Long range + Repeaters</td>
-              </tr>
-              <tr>
-                <td class="py-2.5 font-medium text-white">Software Execution</td>
-                <td class="py-2.5 text-gray-400">Native Control Layers</td>
-                <td class="py-2.5 text-gray-400">HPC + Quantum Integration</td>
-                <td class="py-2.5 text-gray-400">HPC + Distributed QC</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
     </div>
   </section>
 
