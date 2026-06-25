@@ -48,7 +48,11 @@
     
     <div>
       <div class="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm mb-4">
-        {% if 'merlin' in product.name|lower %}
+        {% if 'node' in product.name|lower %}
+        <a href="#img1" class="block cursor-zoom-in">
+          <img id="main-viewer" src="/static/images/qkd_node.png" class="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" alt="QKD Infrastructure Node">
+        </a>
+        {% elif 'merlin' in product.name|lower %}
         <a href="#img1" class="block cursor-zoom-in">
           <img id="main-viewer" src="/static/images/MERLIN.jpeg" class="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" alt="MERLIN Synchronization IP">
         </a>
@@ -68,7 +72,14 @@
       </div>
       
       <div class="grid grid-cols-4 gap-3">
-        {% if 'merlin' in product.name|lower %}
+        {% if 'node' in product.name|lower %}
+        <a href="#img1" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
+          <img src="/static/images/qkd_node.png" class="w-full h-16 object-cover hover:opacity-80" alt="QKD Node Chassis">
+        </a>
+        <a href="#img2" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
+          <img src="/static/images/qkd_node_rear.png" class="w-full h-16 object-cover hover:opacity-80" alt="Interfaces & Optoelectronics">
+        </a>
+        {% elif 'merlin' in product.name|lower %}
         <a href="#img1" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
           <img src="/static/images/MERLIN.jpeg" class="w-full h-16 object-cover hover:opacity-80" alt="MERLIN Architecture">
         </a>
@@ -103,25 +114,35 @@
           <span class="text-xs font-bold text-blue-600 uppercase tracking-wider bg-blue-50 px-2.5 py-1 rounded-full">
             Hardware Specification
           </span>
-          {% if 'merlin' in product.name|lower or 'control' in product.name|lower or 'electronics' in product.name|lower or 'fpga' in product.name|lower or 'fmc' in product.name|lower or 'mezzanine' in product.name|lower %}
-          <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider bg-indigo-50 px-2.5 py-1 rounded-full">
-            Control Electronics Pipeline
-          </span>
-          {% else %}
+          {% if 'node' in product.name|lower or not ('merlin' in product.name|lower or 'control' in product.name|lower or 'electronics' in product.name|lower or 'fpga' in product.name|lower or 'fmc' in product.name|lower or 'mezzanine' in product.name|lower) %}
           <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider bg-emerald-50 px-2.5 py-1 rounded-full">
             Quantum Communication Node
+          </span>
+          {% else %}
+          <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider bg-indigo-50 px-2.5 py-1 rounded-full">
+            Control Electronics Pipeline
           </span>
           {% endif %}
         </div>
 
-        {% if 'merlin' in product.name|lower %}
-        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-4">MERLIN Synchronization IP</h1> 
+        {% if 'node' in product.name|lower %}
+        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-4">Industrial QKD Deployment Node</h1> 
         
+        <div class="bg-emerald-50/50 rounded-xl p-4 border border-emerald-100 mb-6">
+          <h4 class="text-xs font-bold text-emerald-800 uppercase tracking-wider mb-2">High-Assurance Secure Key Generation &amp; Distribution Engine</h4>
+          <p class="text-xs text-emerald-700 leading-relaxed">
+            A production-ready infrastructure system designed for continuous, long-range cryptographic key distillation over telecom fiber. Capable of multi-protocol deployment, it implements rigid validation parameters to ensure secure data links across regional network rings.
+          </p>
+        </div>
+
+        {% elif 'merlin' in product.name|lower %}
+        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-4">MERLIN Synchronization IP</h1> 
         
         <div class="bg-indigo-50/50 rounded-xl p-4 border border-indigo-100 mb-6">
           <h4 class="text-xs font-bold text-indigo-800 uppercase tracking-wider mb-2">MERLIN IP: High-Assurance Timing Synchronization for Distributed Architectures</h4>
           <p class="text-xs text-indigo-700 leading-relaxed">
             MERLIN IP provides ultra-precise, long-distance board-to-board time synchronization architectures tailored specifically for distributed embedded endpoints. By distributing synchronized clock resources over optical fiber lines, it maps multiple distinct execution systems into a unified deterministic timing framework without drift anomalies.
+          </p>
         </div>
 
         {% elif 'fmc' in product.name|lower or 'mezzanine' in product.name|lower %}
@@ -131,7 +152,6 @@
           <h4 class="text-xs font-bold text-indigo-800 uppercase tracking-wider mb-2">Quantum Communication Interface Card for UltraScale+ FPGA Platforms</h4>
           <p class="text-xs text-indigo-700 leading-relaxed">
             The Custom FPGA Mezzanine Card is a specialized High Pin Count (HPC) module engineered to transform generic evaluation arrays like the Xilinx UltraScale+ ZCU102 into application-focused, QKD-ready hardware platforms. It bridges the critical general-purpose evaluation gaps by providing missing timing, trigger control, and specialized hardware I/O.
-        </p>
           </p>
         </div>
 
@@ -146,19 +166,23 @@
         </div>
 
         {% else %}
-        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-4">QKD Network Primer</h1> 
+        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-4">QKD Network Primer Kit</h1> 
         
         <div class="bg-emerald-50/50 rounded-xl p-4 border border-emerald-100 mb-6">
-          <h4 class="text-xs font-bold text-emerald-800 uppercase tracking-wider mb-2">QKD Network Fundamentals</h4>
+          <h4 class="text-xs font-bold text-emerald-800 uppercase tracking-wider mb-2">QKD Training &amp; Educational Sandbox</h4>
           <p class="text-xs text-emerald-700 leading-relaxed">
-           The QKD Networks Primer introduces the definitive physical and architectural dynamics of Quantum Key Distribution (QKD) hardware configurations. By bridging the gap between theoretical calculations and real-world fiber constraints, it forms a complete foundation for institutional capacity building, aligned with National Quantum Mission priorities.
+            The QKD Network Primer provides users with an intuitive, hands-on learning experience to build a comprehensive practical understanding of Quantum Key Distribution (QKD) implementations. It bridges the gap between theoretical calculations and real-world fiber mechanics, offering an optimized capacity-building ecosystem to introduce quantum security paradigms within academic programs and research labs.
           </p>
         </div>
         {% endif %}
       </div>
 
       <div>
-        {% if 'merlin' in product.name|lower %}
+        {% if 'node' in product.name|lower %}
+        <a href="/static/brochures/QKD_Node_Industrial_Specifications.pdf" class="inline-flex items-center justify-center bg-gray-900 text-white font-semibold text-sm px-6 py-3.5 rounded-xl hover:bg-gray-800 transition-all shadow-sm w-full sm:w-auto">
+          Download Technical Datasheet (PDF)
+        </a>
+        {% elif 'merlin' in product.name|lower %}
         <a href="/static/brochures/MERLIN_Specs.pdf" class="inline-flex items-center justify-center bg-gray-900 text-white font-semibold text-sm px-6 py-3.5 rounded-xl hover:bg-gray-800 transition-all shadow-sm w-full sm:w-auto">
           Download Technical Datasheet (PDF)
         </a>
@@ -179,14 +203,26 @@
     </div>
   </div>
 
-  {% if 'merlin' in product.name|lower %}
+  {% if 'node' in product.name|lower %}
+  <div id="img1" class="lightbox">
+    <a href="#img2" class="prev">❮</a>
+    <img src="/static/images/qkd_node.png" alt="Industrial QKD Operational Chassis Layout">
+    <a href="#img2" class="next">❯</a>
+    <a href="#" class="close">✕</a>
+  </div>
+  <div id="img2" class="lightbox">
+    <a href="#img1" class="prev">❮</a>
+    <img src="/static/images/qkd_node_rear.png" alt="Optical SC Ports and Telemetry Interfaces">
+    <a href="#img1" class="next">❯</a>
+    <a href="#" class="close">✕</a>
+  </div>
+  {% elif 'merlin' in product.name|lower %}
   <div id="img1" class="lightbox">
     <a href="#img2" class="prev">❮</a>
     <img src="/static/images/MERLIN.jpeg" alt="MERLIN Clock Distribution Diagram">
     <a href="#img2" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
-  
   {% elif 'fmc' in product.name|lower or 'mezzanine' in product.name|lower %}
   <div id="img1" class="lightbox">
     <a href="#img2" class="prev">❮</a>
@@ -196,32 +232,32 @@
   </div>
   {% elif 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
   <div id="img1" class="lightbox">
-    <a href="#img1" class="prev">❮</a>
+    <a href="#img3" class="prev">❮</a>
     <img src="/static/images/qcc_board.jpeg" alt="QCC FPGA Development Board View">
     <a href="#img2" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
   <div id="img2" class="lightbox">
-    <a href="#img2" class="prev">❮</a>
+    <a href="#img1" class="prev">❮</a>
     <img src="/static/images/QCC_3.jpeg" alt="QCC Core Layout Spec Sheet">
     <a href="#img3" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
   <div id="img3" class="lightbox">
-    <a href="#img3" class="prev">❮</a>
+    <a href="#img2" class="prev">❮</a>
     <img src="/static/images/QCC_2.jpeg" alt="Optical Transceiver Bus Diagram">
     <a href="#img1" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
   {% else %}
   <div id="img1" class="lightbox">
-    <a href="#img1" class="prev">❮</a>
+    <a href="#img2" class="prev">❮</a>
     <img src="/static/images/qubit_primer.png" alt="QKD Enclosure View">
     <a href="#img2" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
   <div id="img2" class="lightbox">
-    <a href="#img2" class="prev">❮</a>
+    <a href="#img1" class="prev">❮</a>
     <img src="/static/images/primer_kit.jpeg" alt="Digital Twin UI Layout">
     <a href="#img1" class="next">❯</a>
     <a href="#" class="close">✕</a>
@@ -233,7 +269,45 @@
       <h2 class="text-xl font-bold text-gray-900 mb-6">Architectural Features &amp; Layer Specs</h2>
       <ul class="grid sm:grid-cols-2 gap-4">
         
-        {% if 'merlin' in product.name|lower %}
+        {% if 'node' in product.name|lower %}
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-emerald-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Secure Key Performance:</strong> Finite-size secure key rate of $\ge3$ kbps with raw key blocks $\ge5$ Mbits for post-processing execution.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-emerald-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Photon &amp; Error Budget:</strong> Maximum mean photon number restricted to $0.25$ operating with a quantum bit error rate tolerance (QBER) $<25\%$.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-emerald-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Long-Distance Optics:</strong> Supports 100 km operational range across SMF-28 links for both Quantum and Classical lines ($\sim20$ dB channel tolerance).</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-emerald-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Protocol Versatility:</strong> Native execution capabilities for DPS, COW, TF, MDI, or any standardized protocol configurations with secure proofs.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-emerald-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Provisioning &amp; Interfaces:</strong> Dual operational runtime mode (Continuous &amp; single instance-based), SC/APC physical interfaces on ITU grids, and gated SPAD detectors.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-emerald-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Infrastructure Grid:</strong> Integrated 1 Gbps Ethernet, USB terminals, and dual power grids (230V @ 50 Hz alongside -48V DC carrier operation).</span>
+        </li>
+
+        {% elif 'merlin' in product.name|lower %}
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -258,18 +332,6 @@
           </svg>
           <span><strong>Autonomous Holdover:</strong> Intelligent runtime frequency loop preservation ensures phase continuity upon reference link loss.</span>
         </li>
-        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
-          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-          </svg>
-          <span><strong>Event Time Tagging:</strong> High-density transaction logs executing up to 10,000 logging events per second with nanosecond resolution.</span>
-        </li>
-        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
-          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-          </svg>
-          <span><strong>Fast-Lock Architecture:</strong> Highly efficient transceiver PLL acquisition profiles reaching phase lock in $\le1$ ms.</span>
-        </li>
 
         {% elif 'fmc' in product.name|lower or 'mezzanine' in product.name|lower %}
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
@@ -288,19 +350,7 @@
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>Flexible Clock Synthesizer:</strong> Sub-nanosecond clock lines handling both incoming network references and outgoing SPD Gating signals.</span>
-        </li>
-        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
-          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-          </svg>
           <span><strong>Electro-Optical Controls:</strong> On-board electrical routing interfaces configured to actuate external MEMS optical switches and VOAs.</span>
-        </li>
-        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
-          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-          </svg>
-          <span><strong>Reconfigurable Evolution:</strong> Fully firmware-defined runtime execution maps capable of shifting across diverse QKD protocols easily.</span>
         </li>
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -332,18 +382,6 @@
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>High-Speed Connectivity:</strong> 4x SFP+ cages and multi-channel SMA driving structures for modulators and gates.</span>
-        </li>
-        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
-          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-          </svg>
-          <span><strong>Hardware Synchronization:</strong> Low-jitter embedded time-synchronization IP cores enforcing deterministic clock alignments.</span>
-        </li>
-        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
-          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-          </svg>
           <span><strong>Optical Power Diagnostic:</strong> 12-bit precision telemetry ADC mapping incoming photodiode power levels continuously.</span>
         </li>
 
@@ -352,37 +390,37 @@
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>Optical Source Analysis:</strong> Quantitative evaluation modules mapping attenuation profiles and variable channel losses.</span>
+          <span><strong>Optical Source Understanding:</strong> Practical analysis modules covering attenuation metrics, noise introduction, and fiber loss curves.</span>
         </li>
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>Pattern Routing Control:</strong> Generates multi-bit string distributions and correlates active transmission states directly to GATE arrays.</span>
+          <span><strong>Tx-Rx Correlation Analysis:</strong> Visualizes transmission behaviors and correlates signal patterns directly to active optical GATE systems.</span>
         </li>
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>Photon Arrival Histogram:</strong> Tracks quantum detection efficiency variations using fine time-interval resolution metrics.</span>
+          <span><strong>Arrival Histogram Studies:</strong> Evaluates photon time-of-arrival parameters under varied detector efficiencies and channel alignments.</span>
         </li>
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>Attack Emulation Modules:</strong> Hardware modules to simulate third-party interception, blinding attacks, and beam-splitting stress.</span>
+          <span><strong>Threat Simulation Concepts:</strong> Educational layouts modeling interception vulnerabilities like detector blinding and beam-splitting.</span>
         </li>
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>Instrumentation Prototyping:</strong> Dedicated physical workspaces containing high-sensitivity PIN receivers and multi-gain TIA routes.</span>
+          <span><strong>Circuit Topography Demos:</strong> Explores PIN photodiode behaviors alongside multi-gain transimpedance amplification (TIA) setups.</span>
         </li>
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>Network Digital Twin:</strong> Software virtualization environment modeling mesh, star, and linear cryptographic routing spaces.</span>
+          <span><strong>Digital Twin Sandbox:</strong> Immersive routing emulation platform evaluating star, mesh, and linear topologies virtually.</span>
         </li>
         {% endif %}
 
@@ -392,8 +430,8 @@
     <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
       <h3 class="text-lg font-bold text-gray-900 mb-2">Request Deployment Estimate</h3>
       <p class="text-xs text-gray-400 mb-4">
-        {% if 'primer' in product.name|lower or not ('fpga' in product.name|lower or 'merlin' in product.name|lower or 'fmc' in product.name|lower or 'mezzanine' in product.name|lower) %}
-        Deployments active from April 2026 onwards with standard 1-month assembly lead times.
+        {% if 'primer' in product.name|lower or not ('fpga' in product.name|lower or 'merlin' in product.name|lower or 'fmc' in product.name|lower or 'mezzanine' in product.name|lower or 'node' in product.name|lower) %}
+        Academic setup options active from April 2026 onwards with a standard 1-month assembly lead time.
         {% else %}
         Scalable standalone infrastructure components configured for production environments and advanced deep-tech R&D tracks.
         {% endif %}
