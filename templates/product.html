@@ -207,26 +207,32 @@
   </div>
   {% elif 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
   <div id="img1" class="lightbox">
+    <a href="#img1" class="prev">❮</a>
+    <img src="/static/images/qcc_board.jpeg" alt="QCC FPGA Development Board View">
+    <a href="#img2" class="next">❯</a>
+    <a href="#" class="close">✕</a>
+  </div>
+  <div id="img2" class="lightbox">
     <a href="#img2" class="prev">❮</a>
     <img src="/static/images/QCC_3.jpeg" alt="QCC Core Layout Spec Sheet">
     <a href="#img2" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
-  <div id="img2" class="lightbox">
-    <a href="#img1" class="prev">❮</a>
+  <div id="img3" class="lightbox">
+    <a href="#img3" class="prev">❮</a>
     <img src="/static/images/QCC_2.jpeg" alt="Optical Transceiver Bus Diagram">
     <a href="#img1" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
   {% else %}
   <div id="img1" class="lightbox">
-    <a href="#img2" class="prev">❮</a>
+    <a href="#img1" class="prev">❮</a>
     <img src="/static/images/qubit_primer.png" alt="QKD Enclosure View">
     <a href="#img2" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
   <div id="img2" class="lightbox">
-    <a href="#img1" class="prev">❮</a>
+    <a href="#img2" class="prev">❮</a>
     <img src="/static/images/primer_kit.jpeg" alt="Digital Twin UI Layout">
     <a href="#img1" class="next">❯</a>
     <a href="#" class="close">✕</a>
