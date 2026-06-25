@@ -76,15 +76,15 @@
         <a href="#img1" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
           <img src="/static/images/FMC.jpeg" class="w-full h-16 object-cover hover:opacity-80" alt="FMC Hardware">
         </a>
-        <a href="#img2" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
-          <img src="/static/images/QCC_2.jpeg" class="w-full h-16 object-cover hover:opacity-80" alt="ZCU102 Block View">
-        </a>
         {% elif 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
         <a href="#img1" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
           <img src="/static/images/qcc_board.jpeg" class="w-full h-16 object-cover hover:opacity-80" alt="QCC Hardware View">
         </a>
         <a href="#img2" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
           <img src="/static/images/QCC_3.jpeg" class="w-full h-16 object-cover hover:opacity-80" alt="SoC Layout View">
+        </a>
+        <a href="#img3" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
+          <img src="/static/images/QCC_2.jpeg" class="w-full h-16 object-cover hover:opacity-80" alt="ZCU102 Block View">
         </a>
         {% else %}
         <a href="#img1" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
@@ -234,7 +234,7 @@
   <div id="img2" class="lightbox">
     <a href="#img2" class="prev">❮</a>
     <img src="/static/images/primer_kit.jpeg" alt="Digital Twin UI Layout">
-    <a href="#img1" class="next">❯</a>
+    <a href="#img2" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
   {% endif %}
