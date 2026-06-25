@@ -48,17 +48,33 @@
     
     <div>
       <div class="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm mb-4">
+        {% if 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
         <a href="#img1" class="block cursor-zoom-in">
-          <img id="main-viewer" src="/static/images/{{ product.images[0] }}" class="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" alt="{{ product.name }}">
+          <img id="main-viewer" src="/static/images/qcc_board.jpeg" class="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" alt="QCC FPGA Development Board">
         </a>
+        {% else %}
+        <a href="#img1" class="block cursor-zoom-in">
+          <img id="main-viewer" src="/static/images/qubit_primer.png" class="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" alt="QKD Network Primer">
+        </a>
+        {% endif %}
       </div>
       
       <div class="grid grid-cols-4 gap-3">
-        {% for img in product.images %}
-        <a href="#img{{ loop.index }}" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
-          <img src="/static/images/{{ img }}" class="w-full h-16 object-cover hover:opacity-80" alt="Thumbnail">
+        {% if 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
+        <a href="#img1" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
+          <img src="/static/images/qcc_board.jpeg" class="w-full h-16 object-cover hover:opacity-80" alt="QCC Board View Thumbnail">
         </a>
-        {% endfor %}
+        <a href="#img2" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
+          <img src="/static/images/qcc_schematic.png" class="w-full h-16 object-cover hover:opacity-80" alt="Architecture Diagram Thumbnail">
+        </a>
+        {% else %}
+        <a href="#img1" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
+          <img src="/static/images/qubit_primer.png" class="w-full h-16 object-cover hover:opacity-80" alt="Hardware Enclosure Thumbnail">
+        </a>
+        <a href="#img2" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
+          <img src="/static/images/quantum_topology.png" class="w-full h-16 object-cover hover:opacity-80" alt="Digital Twin Topology Thumbnail">
+        </a>
+        {% endif %}
       </div>
     </div>
 
@@ -68,71 +84,190 @@
           <span class="text-xs font-bold text-blue-600 uppercase tracking-wider bg-blue-50 px-2.5 py-1 rounded-full">
             Hardware Specification
           </span>
-          {% if 'qkd' in product.name|lower or 'node' in product.name|lower %}
-          <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider bg-emerald-50 px-2.5 py-1 rounded-full">
-            Quantum Communication Node
-          </span>
-          {% elif 'control' in product.name|lower or 'electronics' in product.name|lower or 'fpga' in product.name|lower %}
+          {% if 'qcc' in product.name|lower or 'fpga' in product.name|lower or 'control' in product.name|lower %}
           <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider bg-indigo-50 px-2.5 py-1 rounded-full">
             Control Electronics Pipeline
+          </span>
+          {% else %}
+          <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider bg-emerald-50 px-2.5 py-1 rounded-full">
+            Quantum Communication Node
           </span>
           {% endif %}
         </div>
 
-        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-4">{{ product.name }}</h1>
-        <p class="text-gray-600 leading-relaxed text-justify mb-6">{{ product.description }}</p>
+        {% if 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
+        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-4">QCC FPGA Development Board</h1> 
+        <p class="text-gray-600 leading-relaxed text-justify mb-6">
+          The Quantum Communication Controller (QCC) is a compact, indigenously developed AMD MPSoC based platform configured as an all-in-one control platform for next-generation quantum networks. It integrates multi-core processing with massive programmable logic configurations to process multiprotocol Key Distribution schemes efficiently without needing unstable external dependencies.
+        </p>
         
-        {% if 'qkd' in product.name|lower or 'node' in product.name|lower %}
-        <div class="bg-emerald-50/50 rounded-xl p-4 border border-emerald-100 mb-6">
-          <h4 class="text-xs font-bold text-emerald-800 uppercase tracking-wider mb-2">QKD Node Parameter Compliance</h4>
-          <p class="text-xs text-emerald-700 leading-relaxed">
-            Optimized for quantum key distribution infrastructure, supporting multi-node entanglement verification routes, point-to-point active phase modulation, and real-time optical link diagnostics.
-          </p>
-        </div>
-        {% elif 'control' in product.name|lower or 'electronics' in product.name|lower or 'fpga' in product.name|lower %}
         <div class="bg-indigo-50/50 rounded-xl p-4 border border-indigo-100 mb-6">
           <h4 class="text-xs font-bold text-indigo-800 uppercase tracking-wider mb-2">Control Subsystem Integration Metrics</h4>
           <p class="text-xs text-indigo-700 leading-relaxed">
-            Configured for ultra-low latency hardware interfaces, deterministic pulse configurations, multi-channel sub-nanosecond timing control arrays, and real-time feedback orchestration loops.
+            Engineered with a Quad-core ARM Cortex-A53 APU and Dual-core Cortex-R5 RPU, supporting sub-nanosecond Time-to-Digital Conversion (TDC), low-jitter clock-data recovery (CDR), and 14-bit precision DAC modulations.
+          </p>
+        </div>
+        {% else %}
+        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-4">QKD Network Primer</h1> 
+        <p class="text-gray-600 leading-relaxed text-justify mb-6">
+          The QKD Networks Primer introduces the definitive operational dynamics of Quantum Key Distribution (QKD) hardware implementations. It bridges the gap between complex theoretical physics and hands-on optical engineering, providing a comprehensive framework to establish Centres of Excellence or Quantum Research Labs.
+        </p>
+        
+        <div class="bg-emerald-50/50 rounded-xl p-4 border border-emerald-100 mb-6">
+          <h4 class="text-xs font-bold text-emerald-800 uppercase tracking-wider mb-2">QKD Node Parameter Compliance</h4>
+          <p class="text-xs text-emerald-700 leading-relaxed">
+            Optimized for national hardware infrastructure guidelines, supporting multi-node entanglement distribution routes, active synchronization matrices, and real-time network attack emulation diagnostics.
           </p>
         </div>
         {% endif %}
       </div>
 
       <div>
-        <a href="/static/brochures/{{ product.brochure }}" class="inline-flex items-center justify-center bg-gray-900 text-white font-semibold text-sm px-6 py-3.5 rounded-xl hover:bg-gray-800 transition-all shadow-sm w-full sm:w-auto">
+        {% if 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
+        <a href="/static/brochures/QCC_Brochure_V1_common.pdf" class="inline-flex items-center justify-center bg-gray-900 text-white font-semibold text-sm px-6 py-3.5 rounded-xl hover:bg-gray-800 transition-all shadow-sm w-full sm:w-auto">
           Download Technical Datasheet (PDF)
         </a>
+        {% else %}
+        <a href="/static/brochures/QKD_network_primer_specification_sheet.pdf" class="inline-flex items-center justify-center bg-gray-900 text-white font-semibold text-sm px-6 py-3.5 rounded-xl hover:bg-gray-800 transition-all shadow-sm w-full sm:w-auto">
+          Download Technical Datasheet (PDF)
+        </a>
+        {% endif %}
       </div>
     </div>
   </div>
 
-  {% for img in product.images %}
-  <div id="img{{ loop.index }}" class="lightbox">
-    <a href="#img{{ loop.index - 1 if loop.index > 1 else product.images|length }}" class="prev">❮</a>
-    <img src="/static/images/{{ img }}" alt="Full spec viewer">
-    <a href="#img{{ loop.index + 1 if loop.index < product.images|length else 1 }}" class="next">❯</a>
+  {% if 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
+  <div id="img1" class="lightbox">
+    <a href="#img2" class="prev">❮</a>
+    <img src="/static/images/qcc_board.jpeg" alt="QCC Hardware Board Topside View">
+    <a href="#img2" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
-  {% endfor %}
+  <div id="img2" class="lightbox">
+    <a href="#img1" class="prev">❮</a>
+    <img src="/static/images/qcc_schematic.png" alt="SoC Processing Core Layout">
+    <a href="#img1" class="next">❯</a>
+    <a href="#" class="close">✕</a>
+  </div>
+  {% else %}
+  <div id="img1" class="lightbox">
+    <a href="#img2" class="prev">❮</a>
+    <img src="/static/images/qubit_primer.png" alt="Full Enclosure Hardware Spec Viewer">
+    <a href="#img2" class="next">❯</a>
+    <a href="#" class="close">✕</a>
+  </div>
+  <div id="img2" class="lightbox">
+    <a href="#img1" class="prev">❮</a>
+    <img src="/static/images/quantum_topology.png" alt="Digital Twin UI Dashboard Spec Viewer">
+    <a href="#img1" class="next">❯</a>
+    <a href="#" class="close">✕</a>
+  </div>
+  {% endif %}
 
   <div class="grid md:grid-cols-3 gap-12 items-start">
     <div class="md:col-span-2">
       <h2 class="text-xl font-bold text-gray-900 mb-6">Architectural Features &amp; Layer Specs</h2>
       <ul class="grid sm:grid-cols-2 gap-4">
-        {% for f in product.features %}
+        
+        {% if 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span>{{ f }}</span>
+          <span><strong>MPSoC Processing Fabric:</strong> Powered by quad-core ARM A53, dual-core real-time R5, and 1.1M+ programmable logic cells.</span>
         </li>
-        {% endfor %}
+
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Native QKD Interfaces:</strong> Built-in NIM &amp; LVTTL Single-Photon Detector interfaces paired with a dual-channel TDC7200.</span>
+        </li>
+
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Optoelectronic Subsystems:</strong> Features 14-bit high-resolution bias control DACs and three integrated on-board optical switches.</span>
+        </li>
+
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Deterministic Synchronization:</strong> Includes configurable low-jitter IP cores to handle timing synchronization over fiber lines.</span>
+        </li>
+
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>High-Speed Aggregations:</strong> 4x SFP+ cages alongside SMA driving structures built explicitly for dynamic modulators and gates.</span>
+        </li>
+
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Power Monitoring Infrastructure:</strong> Integrated 12-bit analog-to-digital conversions (ADC) for incoming channel power monitoring.</span>
+        </li>
+        {% else %}
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Optical Source Analysis:</strong> Characterization setups with controlled channel noise and variable optical loss vectors.</span>
+        </li>
+
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Tx-Rx Pattern Tracking:</strong> Generates diverse transmission patterns and correlates transmitted to GATE arrays.</span>
+        </li>
+
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Histogram Engineering:</strong> Photon arrival timing parsing evaluated against raw detector efficiency limits.</span>
+        </li>
+
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Security Attack Emulation:</strong> Active modules to model blinding variations and physical beam-splitting intercepts.</span>
+        </li>
+
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Instrumentation Layer:</strong> High-sensitivity PIN photodetectors paired with multi-gain TIA prototyping setups.</span>
+        </li>
+
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Network Digital Twin:</strong> Virtual mapping topology engine handling mesh, linear, and star cryptographic routes.</span>
+        </li>
+        {% endif %}
+
       </ul>
     </div>
 
     <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-      <h3 class="text-lg font-bold text-gray-900 mb-4">Request Deployment Estimate</h3>
+      <h3 class="text-lg font-bold text-gray-900 mb-2">Request Deployment Estimate</h3>
+      <p class="text-xs text-gray-400 mb-4">
+        {% if 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
+        Scalable standalone systems built for advanced deployment and research infrastructures.
+        {% else %}
+        Deployments active from April 2026 onwards with standard 1-month assembly lead times.
+        {% endif %}
+      </p>
+      
       <form action="/request-quote" method="post" class="space-y-4">
         <input type="hidden" name="product" value="{{ product.name }}">
         <div>
