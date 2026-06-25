@@ -12,11 +12,11 @@ from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 
-# Configuration variables for your enterprise mail server
-SMTP_SERVER = "smtp.yourmailprovider.com"  # e.g., smtp.gmail.com or AWS SES endpoint
+
+SMTP_SERVER = "smtp.yourmailprovider.com" # "smtp.gmail.com"  # Change to your actual provider's SMTP
 SMTP_PORT = 587
 COMPANY_INBOX = "abhishek.rao@quntrolsphere.com"
-EMAIL_PASSWORD = "your-secure-app-password"  # Use environment variables in production!
+EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD") # Pulls securely from Render
 
 # Mount static files (images, css, brochures)
 app.mount("/static", StaticFiles(directory="static"), name="static")
