@@ -13,7 +13,7 @@ from fastapi.templating import Jinja2Templates
 app = FastAPI()
 
 
-SMTP_SERVER = "smtp.yourmailprovider.com" # "smtp.gmail.com"  # Change to your actual provider's SMTP
+SMTP_SERVER = "smtp.gmail.com"  # Change to your actual provider's SMTP
 SMTP_PORT = 587
 COMPANY_INBOX = "abhishek.rao@quntrolsphere.com"
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD") # Pulls securely from Render
