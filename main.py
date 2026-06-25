@@ -5,29 +5,41 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-from fastapi import FastAPI, Request, Form, File, UploadFile, Response
+from fastapi import FastAPI, Request, Form, File, UploadFile, Response, HTTPException
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
+# Slowapi modules for DDoS and spam protection
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
+
+# Initialize Rate Limiter using client remote IP addresses
+limiter = Limiter(key_func=get_remote_address)
 app = FastAPI()
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-
-SMTP_SERVER = "smtp.gmail.com"  # Change to your actual provider's SMTP
-SMTP_PORT = 587
-COMPANY_INBOX = "abhishek.rao@quntrolsphere.com"
-EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD") # Pulls securely from Render
+# --- SECURE CONFIGURATION VIA INFRASTRUCTURE ENVIRONMENT VARIABLES ---
+# Default targets fallback safely, but passwords must be pulled dynamically from Render env fields.
+SMTP_SERVER = os.environ.get("SMTP_SERVER", "smtp.gmail.com")
+SMTP_PORT = int(os.environ.get("SMTP_PORT", 465))
+COMPANY_INBOX = os.environ.get("COMPANY_INBOX", "contact@quntrolsphere.com")
+EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD") # Kept empty locally; populated securely inside Render
 
 # Mount static files (images, css, brochures)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 templates = Jinja2Templates(directory="templates")
 
+
 def get_current_year():
     """Returns the current string year safely passed into footer rendering variables."""
     return str(datetime.datetime.now(datetime.timezone.utc).year)
 
-# Mock Product Database matching your services.html paths
+
+# Centralized Hardware and IP core database matching templates
 PRODUCTS = {
     "qcc-board": {
         "name": "QCC FPGA Development Board",
@@ -73,9 +85,29 @@ PRODUCTS = {
     }
 }
 
+
+# --- HTTP INJECTION PROTECTION SECURITY MIDDLEWARE ---
+@app.middleware("http")
+async def add_security_headers(request: Request, call_next):
+    response = await call_next(request)
+    # Mitigate Clickjacking hijacking attacks
+    response.headers["X-Frame-Options"] = "DENY"
+    # Mitigate reflective Cross-Site Scripting (XSS)
+    response.headers["X-XSS-Protection"] = "1; mode=block"
+    # Force strict browser respect for file types to block MIME-sniffing exploits
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    # Scope tracking references shared externally
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    return response
+
+
 # --- REUSABLE SECURE SMTP DISPATCHER ---
 def send_automated_email(subject: str, html_body: str, to_email: str, reply_to_email: str = None):
     """Establishes safe TLS connections and handles transactional body delivery."""
+    if not EMAIL_PASSWORD:
+        print("[WARNING] Outbound SMTP configuration skipped. EMAIL_PASSWORD environment variable is unset.")
+        return
+
     msg = MIMEMultipart("alternative")
     msg['From'] = COMPANY_INBOX
     msg['To'] = to_email
@@ -91,7 +123,7 @@ def send_automated_email(subject: str, html_body: str, to_email: str, reply_to_e
         server.send_message(msg)
 
 
-# --- CORE APPLICATION ROUTING INFRASTRUCTURE ---
+# --- APPLICATION ROUTING INFRASTRUCTURE ---
 
 @app.head("/")
 async def home_head():
@@ -113,7 +145,9 @@ async def services(request: Request):
 async def contact_page(request: Request):
     return templates.TemplateResponse(request, "contact.html", {"current_year": get_current_year()})
 
+
 @app.post("/contact")
+@limiter.limit("5/minute")  # Mitigates automated form submission spamming
 async def handle_contact(
     request: Request, 
     name: str = Form(...), 
@@ -167,6 +201,7 @@ async def handle_contact(
 
 
 @app.post("/request-quote")
+@limiter.limit("5/minute")
 async def handle_quote(
     request: Request,
     product: str = Form(...),
@@ -226,13 +261,16 @@ async def product_page(request: Request, product_id: str):
     
     return templates.TemplateResponse(request, "product.html", {"product": product, "current_year": get_current_year()})
 
+
 @app.get("/thanks", response_class=HTMLResponse)
 async def thanks(request: Request):
     return templates.TemplateResponse(request, "thanks.html", {"current_year": get_current_year()})
 
 
 @app.post("/apply")
+@limiter.limit("3/minute")
 async def handle_application(
+    request: Request,  # Required variable argument context infrastructure for slowapi evaluation tracking
     job_title: str = Form(...),
     name: str = Form(...),
     email: str = Form(...),
@@ -241,6 +279,18 @@ async def handle_application(
     resume: UploadFile = File(...)
 ):
     try:
+        # 1. STRICT FILE TYPE VALIDATION BLOCK (Blocks malicious script injection payloads)
+        allowed_extensions = [".pdf", ".docx"]
+        file_ext = os.path.splitext(resume.filename)[1].lower()
+        if file_ext not in allowed_extensions:
+            raise HTTPException(status_code=400, detail="Forbidden file layout structural extension. Only PDF and DOCX formats allowed.")
+
+        # 2. STRICT FILE SIZE RESTRICTION BLOCK (Prevents server memory crash allocation exhaustion)
+        MAX_FILE_SIZE = 5 * 1024 * 1024  # 5 Megabytes absolute execution boundary limit
+        file_content = await resume.read()
+        if len(file_content) > MAX_FILE_SIZE:
+            raise HTTPException(status_code=400, detail="Payload validation threshold broken. Attachment size exceeds 5MB limit.")
+
         msg = MIMEMultipart()
         msg['From'] = COMPANY_INBOX
         msg['To'] = COMPANY_INBOX
@@ -267,20 +317,26 @@ async def handle_application(
         """
         msg.attach(MIMEText(html_body, 'html'))
 
-        file_content = await resume.read()
+        # Prepare secure file configuration container mapping structural values safely
         part = MIMEBase('application', 'octet-stream')
         part.set_payload(file_content)
         encoders.encode_base64(part)
         
-        clean_filename = f"Resume_{name.replace(' ', '_')}.pdf"
+        clean_filename = f"Resume_{name.replace(' ', '_')}{file_ext}"
         part.add_header('Content-Disposition', f'attachment; filename="{clean_filename}"')
         msg.attach(part)
 
-        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
-            server.starttls()
-            server.login(COMPANY_INBOX, EMAIL_PASSWORD)
-            server.send_message(msg)
+        if EMAIL_PASSWORD:
+            with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
+                server.starttls()
+                server.login(COMPANY_INBOX, EMAIL_PASSWORD)
+                server.send_message(msg)
+        else:
+            print("[WARNING] Careers transmission skipped. EMAIL_PASSWORD environment variable is missing.")
 
+    except HTTPException as http_err:
+        # Re-raise explicit HTTP errors to prevent catching framework responses inside the general tracker block
+        raise http_err
     except Exception as e:
         print(f"SMTP Transmission failure encountered: {e}")
 
