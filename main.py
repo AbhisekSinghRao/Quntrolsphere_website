@@ -15,7 +15,7 @@ app = FastAPI()
 # Configuration variables for your enterprise mail server
 SMTP_SERVER = "smtp.yourmailprovider.com"  # e.g., smtp.gmail.com or AWS SES endpoint
 SMTP_PORT = 587
-COMPANY_INBOX = "contact@quntrolsphere.com"
+COMPANY_INBOX = "abhishek.rao@quntrolsphere.com"
 EMAIL_PASSWORD = "your-secure-app-password"  # Use environment variables in production!
 
 # Mount static files (images, css, brochures)
