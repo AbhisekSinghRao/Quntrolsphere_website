@@ -48,7 +48,15 @@
     
     <div>
       <div class="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm mb-4">
-        {% if 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
+        {% if 'merlin' in product.name|lower %}
+        <a href="#img1" class="block cursor-zoom-in">
+          <img id="main-viewer" src="/static/images/merlin_sync.png" class="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" alt="MERLIN Synchronization IP">
+        </a>
+        {% elif 'fmc' in product.name|lower or 'mezzanine' in product.name|lower %}
+        <a href="#img1" class="block cursor-zoom-in">
+          <img id="main-viewer" src="/static/images/fmc_card.png" class="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" alt="Custom FPGA Mezzanine Card">
+        </a>
+        {% elif 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
         <a href="#img1" class="block cursor-zoom-in">
           <img id="main-viewer" src="/static/images/qcc_board.jpeg" class="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" alt="QCC FPGA Development Board">
         </a>
@@ -60,19 +68,33 @@
       </div>
       
       <div class="grid grid-cols-4 gap-3">
-        {% if 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
+        {% if 'merlin' in product.name|lower %}
         <a href="#img1" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
-          <img src="/static/images/qcc_board.jpeg" class="w-full h-16 object-cover hover:opacity-80" alt="QCC Board View Thumbnail">
+          <img src="/static/images/merlin_sync.png" class="w-full h-16 object-cover hover:opacity-80" alt="MERLIN Architecture">
         </a>
         <a href="#img2" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
-          <img src="/static/images/qcc_schematic.png" class="w-full h-16 object-cover hover:opacity-80" alt="Architecture Diagram Thumbnail">
+          <img src="/static/images/merlin_timing.png" class="w-full h-16 object-cover hover:opacity-80" alt="Timing Sequence">
+        </a>
+        {% elif 'fmc' in product.name|lower or 'mezzanine' in product.name|lower %}
+        <a href="#img1" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
+          <img src="/static/images/fmc_card.png" class="w-full h-16 object-cover hover:opacity-80" alt="FMC Hardware">
+        </a>
+        <a href="#img2" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
+          <img src="/static/images/zcu102_integration.png" class="w-full h-16 object-cover hover:opacity-80" alt="ZCU102 Block View">
+        </a>
+        {% elif 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
+        <a href="#img1" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
+          <img src="/static/images/qcc_board.jpeg" class="w-full h-16 object-cover hover:opacity-80" alt="QCC Hardware View">
+        </a>
+        <a href="#img2" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
+          <img src="/static/images/qcc_schematic.png" class="w-full h-16 object-cover hover:opacity-80" alt="SoC Layout View">
         </a>
         {% else %}
         <a href="#img1" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
-          <img src="/static/images/qubit_primer.png" class="w-full h-16 object-cover hover:opacity-80" alt="Hardware Enclosure Thumbnail">
+          <img src="/static/images/qubit_primer.png" class="w-full h-16 object-cover hover:opacity-80" alt="Hardware Enclosure View">
         </a>
         <a href="#img2" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
-          <img src="/static/images/quantum_topology.png" class="w-full h-16 object-cover hover:opacity-80" alt="Digital Twin Topology Thumbnail">
+          <img src="/static/images/quantum_topology.png" class="w-full h-16 object-cover hover:opacity-80" alt="Topology Digital Twin View">
         </a>
         {% endif %}
       </div>
@@ -84,7 +106,7 @@
           <span class="text-xs font-bold text-blue-600 uppercase tracking-wider bg-blue-50 px-2.5 py-1 rounded-full">
             Hardware Specification
           </span>
-          {% if 'qcc' in product.name|lower or 'fpga' in product.name|lower or 'control' in product.name|lower %}
+          {% if 'merlin' in product.name|lower or 'control' in product.name|lower or 'electronics' in product.name|lower or 'fpga' in product.name|lower or 'fmc' in product.name|lower or 'mezzanine' in product.name|lower %}
           <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider bg-indigo-50 px-2.5 py-1 rounded-full">
             Control Electronics Pipeline
           </span>
@@ -95,35 +117,70 @@
           {% endif %}
         </div>
 
-        {% if 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
-        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-4">QCC FPGA Development Board</h1> 
+        {% if 'merlin' in product.name|lower %}
+        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-4">MERLIN Synchronization IP</h1> 
         <p class="text-gray-600 leading-relaxed text-justify mb-6">
-          The Quantum Communication Controller (QCC) is a compact, indigenously developed AMD MPSoC based platform configured as an all-in-one control platform for next-generation quantum networks. It integrates multi-core processing with massive programmable logic configurations to process multiprotocol Key Distribution schemes efficiently without needing unstable external dependencies.
+          MERLIN IP provides ultra-precise, long-distance board-to-board time synchronization architectures tailored specifically for distributed embedded endpoints. By distributing synchronized clock resources over optical fiber lines, it maps multiple distinct execution systems into a unified deterministic timing framework without drift anomalies.
         </p>
         
         <div class="bg-indigo-50/50 rounded-xl p-4 border border-indigo-100 mb-6">
           <h4 class="text-xs font-bold text-indigo-800 uppercase tracking-wider mb-2">Control Subsystem Integration Metrics</h4>
           <p class="text-xs text-indigo-700 leading-relaxed">
-            Engineered with a Quad-core ARM Cortex-A53 APU and Dual-core Cortex-R5 RPU, supporting sub-nanosecond Time-to-Digital Conversion (TDC), low-jitter clock-data recovery (CDR), and 14-bit precision DAC modulations.
+            Delivers sub-5 ns internal clock resolution combined with deterministic trigger skew tracking ($\le10$ ns) to orchestrate phase-locked event timestamping registers across long distance fiber lines.
           </p>
         </div>
+
+        {% elif 'fmc' in product.name|lower or 'mezzanine' in product.name|lower %}
+        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-4">Custom FPGA Mezzanine Card (FMC)</h1> 
+        <p class="text-gray-600 leading-relaxed text-justify mb-6">
+          The Custom FPGA Mezzanine Card is a specialized High Pin Count (HPC) module engineered to transform generic evaluation arrays like the Xilinx UltraScale+ ZCU102 into application-focused, QKD-ready hardware platforms. It bridges the critical general-purpose evaluation gaps by providing missing timing, trigger control, and specialized hardware I/O.
+        </p>
+        
+        <div class="bg-indigo-50/50 rounded-xl p-4 border border-indigo-100 mb-6">
+          <h4 class="text-xs font-bold text-indigo-800 uppercase tracking-wider mb-2">Control Subsystem Integration Metrics</h4>
+          <p class="text-xs text-indigo-700 leading-relaxed">
+            Built with dedicated, firmware-reconfigurable paths to generate high-speed test stimuli, calibrate optical paths, and drive high-speed single photon detector gating configurations simultaneously.
+          </p>
+        </div>
+
+        {% elif 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
+        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-4">QCC FPGA Development Board</h1> 
+        <p class="text-gray-600 leading-relaxed text-justify mb-6">
+          The Quantum Communication Controller (QCC) is an indigenous, multi-core AMD MPSoC acceleration platform designed as a standalone control matrix for secure networks. It orchestrates complex multi-protocol operations, low-jitter signal recoveries, and real-time cryptographic transactions on a single scalable substrate.
+        </p>
+        
+        <div class="bg-indigo-50/50 rounded-xl p-4 border border-indigo-100 mb-6">
+          <h4 class="text-xs font-bold text-indigo-800 uppercase tracking-wider mb-2">Control Subsystem Integration Metrics</h4>
+          <p class="text-xs text-indigo-700 leading-relaxed">
+            Engineered with dual-core Cortex-R5 real-time engines, quad-core Cortex-A53 processing chains, 1.1M+ programmable logic slices, and dual internal TDC7200 cores for hardware-enforced timing execution.
+          </p>
+        </div>
+
         {% else %}
         <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-4">QKD Network Primer</h1> 
         <p class="text-gray-600 leading-relaxed text-justify mb-6">
-          The QKD Networks Primer introduces the definitive operational dynamics of Quantum Key Distribution (QKD) hardware implementations. It bridges the gap between complex theoretical physics and hands-on optical engineering, providing a comprehensive framework to establish Centres of Excellence or Quantum Research Labs.
+          The QKD Networks Primer introduces the definitive physical and architectural dynamics of Quantum Key Distribution (QKD) hardware configurations. By bridging the gap between theoretical calculations and real-world fiber constraints, it forms a complete foundation for institutional capacity building, aligned with National Quantum Mission priorities.
         </p>
         
         <div class="bg-emerald-50/50 rounded-xl p-4 border border-emerald-100 mb-6">
           <h4 class="text-xs font-bold text-emerald-800 uppercase tracking-wider mb-2">QKD Node Parameter Compliance</h4>
           <p class="text-xs text-emerald-700 leading-relaxed">
-            Optimized for national hardware infrastructure guidelines, supporting multi-node entanglement distribution routes, active synchronization matrices, and real-time network attack emulation diagnostics.
+            Optimized for multi-node entanglement verification routes, point-to-point active phase modulations, raw photon mapping parameters, and localized adversarial threat simulation testing.
           </p>
         </div>
         {% endif %}
       </div>
 
       <div>
-        {% if 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
+        {% if 'merlin' in product.name|lower %}
+        <a href="/static/brochures/MERLIN_Specs.pdf" class="inline-flex items-center justify-center bg-gray-900 text-white font-semibold text-sm px-6 py-3.5 rounded-xl hover:bg-gray-800 transition-all shadow-sm w-full sm:w-auto">
+          Download Technical Datasheet (PDF)
+        </a>
+        {% elif 'fmc' in product.name|lower or 'mezzanine' in product.name|lower %}
+        <a href="/static/brochures/Specification_sheet_FMC.pdf" class="inline-flex items-center justify-center bg-gray-900 text-white font-semibold text-sm px-6 py-3.5 rounded-xl hover:bg-gray-800 transition-all shadow-sm w-full sm:w-auto">
+          Download Technical Datasheet (PDF)
+        </a>
+        {% elif 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
         <a href="/static/brochures/QCC_Brochure_V1_common.pdf" class="inline-flex items-center justify-center bg-gray-900 text-white font-semibold text-sm px-6 py-3.5 rounded-xl hover:bg-gray-800 transition-all shadow-sm w-full sm:w-auto">
           Download Technical Datasheet (PDF)
         </a>
@@ -136,29 +193,55 @@
     </div>
   </div>
 
-  {% if 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
+  {% if 'merlin' in product.name|lower %}
   <div id="img1" class="lightbox">
     <a href="#img2" class="prev">❮</a>
-    <img src="/static/images/qcc_board.jpeg" alt="QCC Hardware Board Topside View">
+    <img src="/static/images/merlin_sync.png" alt="MERLIN Clock Distribution Diagram">
     <a href="#img2" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
   <div id="img2" class="lightbox">
     <a href="#img1" class="prev">❮</a>
-    <img src="/static/images/qcc_schematic.png" alt="SoC Processing Core Layout">
+    <img src="/static/images/merlin_timing.png" alt="Inter-board Phase Performance Analysis">
+    <a href="#img1" class="next">❯</a>
+    <a href="#" class="close">✕</a>
+  </div>
+  {% elif 'fmc' in product.name|lower or 'mezzanine' in product.name|lower %}
+  <div id="img1" class="lightbox">
+    <a href="#img2" class="prev">❮</a>
+    <img src="/static/images/fmc_card.png" alt="FPGA Mezzanine Card Component View">
+    <a href="#img2" class="next">❯</a>
+    <a href="#" class="close">✕</a>
+  </div>
+  <div id="img2" class="lightbox">
+    <a href="#img1" class="prev">❮</a>
+    <img src="/static/images/zcu102_integration.png" alt="ZCU102 High Pin Count Pinout Map">
+    <a href="#img1" class="next">❯</a>
+    <a href="#" class="close">✕</a>
+  </div>
+  {% elif 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
+  <div id="img1" class="lightbox">
+    <a href="#img2" class="prev">❮</a>
+    <img src="/static/images/qcc_board.jpeg" alt="QCC Core Layout Spec Sheet">
+    <a href="#img2" class="next">❯</a>
+    <a href="#" class="close">✕</a>
+  </div>
+  <div id="img2" class="lightbox">
+    <a href="#img1" class="prev">❮</a>
+    <img src="/static/images/qcc_schematic.png" alt="Optical Transceiver Bus Diagram">
     <a href="#img1" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
   {% else %}
   <div id="img1" class="lightbox">
     <a href="#img2" class="prev">❮</a>
-    <img src="/static/images/qubit_primer.png" alt="Full Enclosure Hardware Spec Viewer">
+    <img src="/static/images/qubit_primer.png" alt="QKD Enclosure View">
     <a href="#img2" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
   <div id="img2" class="lightbox">
     <a href="#img1" class="prev">❮</a>
-    <img src="/static/images/quantum_topology.png" alt="Digital Twin UI Dashboard Spec Viewer">
+    <img src="/static/images/quantum_topology.png" alt="Digital Twin UI Layout">
     <a href="#img1" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
@@ -169,89 +252,156 @@
       <h2 class="text-xl font-bold text-gray-900 mb-6">Architectural Features &amp; Layer Specs</h2>
       <ul class="grid sm:grid-cols-2 gap-4">
         
-        {% if 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
+        {% if 'merlin' in product.name|lower %}
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>MPSoC Processing Fabric:</strong> Powered by quad-core ARM A53, dual-core real-time R5, and 1.1M+ programmable logic cells.</span>
+          <span><strong>Multi-Reference Disciplining:</strong> Seamless operational locking to GNSS (GPS, GLONASS, Galileo, BeiDou) and IRIG-B sources.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>High-Resolution Tracking:</strong> Internal timing clock resolution $\le5$ ns with 1PPS reference synchronization accuracy.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Oscillator Stabilization:</strong> Flexible design parameters configured for TCXO and ultra-stable OCXO (up to $1\times10^{-12}$) components.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Autonomous Holdover:</strong> Intelligent runtime frequency loop preservation ensures phase continuity upon reference link loss.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Event Time Tagging:</strong> High-density transaction logs executing up to 10,000 logging events per second with nanosecond resolution.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Fast-Lock Architecture:</strong> Highly efficient transceiver PLL acquisition profiles reaching phase lock in $\le1$ ms.</span>
         </li>
 
+        {% elif 'fmc' in product.name|lower or 'mezzanine' in product.name|lower %}
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>Native QKD Interfaces:</strong> Built-in NIM &amp; LVTTL Single-Photon Detector interfaces paired with a dual-channel TDC7200.</span>
+          <span><strong>HPC Form Compliance:</strong> Fully standard-compliant High Pin Count connector mapping directly into Xilinx ZCU102 fabrics.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>On-Board TDC Engines:</strong> Embedded precision Time-to-Digital Conversion circuits engineered for nanosecond timing capture.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Flexible Clock Synthesizer:</strong> Sub-nanosecond clock lines handling both incoming network references and outgoing SPD Gating signals.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Electro-Optical Controls:</strong> On-board electrical routing interfaces configured to actuate external MEMS optical switches and VOAs.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Reconfigurable Evolution:</strong> Fully firmware-defined runtime execution maps capable of shifting across diverse QKD protocols easily.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>SETS Chennai Validation:</strong> Optimized directly to feed reliable hardware test stimulus parameters into localized distillation kernels.</span>
         </li>
 
+        {% elif 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>Optoelectronic Subsystems:</strong> Features 14-bit high-resolution bias control DACs and three integrated on-board optical switches.</span>
+          <span><strong>MPSoC Multi-Core Fabric:</strong> Native Quad-core ARM A53 combined with Dual-core real-time R5 processing engines.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Single-Photon Interfaces:</strong> Dual internal TDC7200 cores tracking NIM &amp; LVTTL Single-Photon Detector arrivals natively.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Integrated Optoelectronics:</strong> On-board 14-bit bias control DACs coupled with three software-driven integrated optical switches.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>High-Speed Connectivity:</strong> 4x SFP+ cages and multi-channel SMA driving structures for modulators and gates.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Hardware Synchronization:</strong> Low-jitter embedded time-synchronization IP cores enforcing deterministic clock alignments.</span>
+        </li>
+        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
+          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span><strong>Optical Power Diagnostic:</strong> 12-bit precision telemetry ADC mapping incoming photodiode power levels continuously.</span>
         </li>
 
-        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
-          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-          </svg>
-          <span><strong>Deterministic Synchronization:</strong> Includes configurable low-jitter IP cores to handle timing synchronization over fiber lines.</span>
-        </li>
-
-        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
-          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-          </svg>
-          <span><strong>High-Speed Aggregations:</strong> 4x SFP+ cages alongside SMA driving structures built explicitly for dynamic modulators and gates.</span>
-        </li>
-
-        <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
-          <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-          </svg>
-          <span><strong>Power Monitoring Infrastructure:</strong> Integrated 12-bit analog-to-digital conversions (ADC) for incoming channel power monitoring.</span>
-        </li>
         {% else %}
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>Optical Source Analysis:</strong> Characterization setups with controlled channel noise and variable optical loss vectors.</span>
+          <span><strong>Optical Source Analysis:</strong> Quantitative evaluation modules mapping attenuation profiles and variable channel losses.</span>
         </li>
-
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>Tx-Rx Pattern Tracking:</strong> Generates diverse transmission patterns and correlates transmitted to GATE arrays.</span>
+          <span><strong>Pattern Routing Control:</strong> Generates multi-bit string distributions and correlates active transmission states directly to GATE arrays.</span>
         </li>
-
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>Histogram Engineering:</strong> Photon arrival timing parsing evaluated against raw detector efficiency limits.</span>
+          <span><strong>Photon Arrival Histogram:</strong> Tracks quantum detection efficiency variations using fine time-interval resolution metrics.</span>
         </li>
-
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>Security Attack Emulation:</strong> Active modules to model blinding variations and physical beam-splitting intercepts.</span>
+          <span><strong>Attack Emulation Modules:</strong> Hardware modules to simulate third-party interception, blinding attacks, and beam-splitting stress.</span>
         </li>
-
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>Instrumentation Layer:</strong> High-sensitivity PIN photodetectors paired with multi-gain TIA prototyping setups.</span>
+          <span><strong>Instrumentation Prototyping:</strong> Dedicated physical workspaces containing high-sensitivity PIN receivers and multi-gain TIA routes.</span>
         </li>
-
         <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-start text-sm text-gray-600">
           <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
-          <span><strong>Network Digital Twin:</strong> Virtual mapping topology engine handling mesh, linear, and star cryptographic routes.</span>
+          <span><strong>Network Digital Twin:</strong> Software virtualization environment modeling mesh, star, and linear cryptographic routing spaces.</span>
         </li>
         {% endif %}
 
@@ -261,10 +411,10 @@
     <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
       <h3 class="text-lg font-bold text-gray-900 mb-2">Request Deployment Estimate</h3>
       <p class="text-xs text-gray-400 mb-4">
-        {% if 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
-        Scalable standalone systems built for advanced deployment and research infrastructures.
-        {% else %}
+        {% if 'primer' in product.name|lower or not ('fpga' in product.name|lower or 'merlin' in product.name|lower or 'fmc' in product.name|lower or 'mezzanine' in product.name|lower) %}
         Deployments active from April 2026 onwards with standard 1-month assembly lead times.
+        {% else %}
+        Scalable standalone infrastructure components configured for production environments and advanced deep-tech R&D tracks.
         {% endif %}
       </p>
       
