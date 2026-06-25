@@ -50,11 +50,11 @@
       <div class="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm mb-4">
         {% if 'merlin' in product.name|lower %}
         <a href="#img1" class="block cursor-zoom-in">
-          <img id="main-viewer" src="/static/images/merlin_sync.png" class="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" alt="MERLIN Synchronization IP">
+          <img id="main-viewer" src="/static/images/MERLIN.jpeg" class="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" alt="MERLIN Synchronization IP">
         </a>
         {% elif 'fmc' in product.name|lower or 'mezzanine' in product.name|lower %}
         <a href="#img1" class="block cursor-zoom-in">
-          <img id="main-viewer" src="/static/images/fmc_card.png" class="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" alt="Custom FPGA Mezzanine Card">
+          <img id="main-viewer" src="/static/images/FMC.jpeg" class="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" alt="Custom FPGA Mezzanine Card">
         </a>
         {% elif 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
         <a href="#img1" class="block cursor-zoom-in">
@@ -70,31 +70,28 @@
       <div class="grid grid-cols-4 gap-3">
         {% if 'merlin' in product.name|lower %}
         <a href="#img1" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
-          <img src="/static/images/merlin_sync.png" class="w-full h-16 object-cover hover:opacity-80" alt="MERLIN Architecture">
-        </a>
-        <a href="#img2" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
-          <img src="/static/images/merlin_timing.png" class="w-full h-16 object-cover hover:opacity-80" alt="Timing Sequence">
+          <img src="/static/images/MERLIN.jpeg" class="w-full h-16 object-cover hover:opacity-80" alt="MERLIN Architecture">
         </a>
         {% elif 'fmc' in product.name|lower or 'mezzanine' in product.name|lower %}
         <a href="#img1" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
-          <img src="/static/images/fmc_card.png" class="w-full h-16 object-cover hover:opacity-80" alt="FMC Hardware">
+          <img src="/static/images/FMC.jpeg" class="w-full h-16 object-cover hover:opacity-80" alt="FMC Hardware">
         </a>
         <a href="#img2" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
-          <img src="/static/images/zcu102_integration.png" class="w-full h-16 object-cover hover:opacity-80" alt="ZCU102 Block View">
+          <img src="/static/images/QCC_2.jpeg" class="w-full h-16 object-cover hover:opacity-80" alt="ZCU102 Block View">
         </a>
         {% elif 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
         <a href="#img1" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
           <img src="/static/images/qcc_board.jpeg" class="w-full h-16 object-cover hover:opacity-80" alt="QCC Hardware View">
         </a>
         <a href="#img2" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
-          <img src="/static/images/qcc_schematic.png" class="w-full h-16 object-cover hover:opacity-80" alt="SoC Layout View">
+          <img src="/static/images/QCC_3.jpeg" class="w-full h-16 object-cover hover:opacity-80" alt="SoC Layout View">
         </a>
         {% else %}
         <a href="#img1" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
-          <img src="/static/images/qubit_primer.png" class="w-full h-16 object-cover hover:opacity-80" alt="Hardware Enclosure View">
+          <img src="/static/images/primer_kit.jpeg" class="w-full h-16 object-cover hover:opacity-80" alt="Hardware Enclosure View">
         </a>
         <a href="#img2" class="overflow-hidden rounded-xl border border-gray-100 bg-white focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer transition-all">
-          <img src="/static/images/quantum_topology.png" class="w-full h-16 object-cover hover:opacity-80" alt="Topology Digital Twin View">
+          <img src="/static/images/qubit_primer.png" class="w-full h-16 object-cover hover:opacity-80" alt="Topology Digital Twin View">
         </a>
         {% endif %}
       </div>
@@ -200,35 +197,24 @@
     <a href="#img2" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
-  <div id="img2" class="lightbox">
-    <a href="#img1" class="prev">❮</a>
-    <img src="/static/images/merlin_timing.png" alt="Inter-board Phase Performance Analysis">
-    <a href="#img1" class="next">❯</a>
-    <a href="#" class="close">✕</a>
-  </div>
+  
   {% elif 'fmc' in product.name|lower or 'mezzanine' in product.name|lower %}
   <div id="img1" class="lightbox">
     <a href="#img2" class="prev">❮</a>
-    <img src="/static/images/fmc_card.png" alt="FPGA Mezzanine Card Component View">
+    <img src="/static/images/FMC.jpeg" alt="FPGA Mezzanine Card Component View">
     <a href="#img2" class="next">❯</a>
-    <a href="#" class="close">✕</a>
-  </div>
-  <div id="img2" class="lightbox">
-    <a href="#img1" class="prev">❮</a>
-    <img src="/static/images/zcu102_integration.png" alt="ZCU102 High Pin Count Pinout Map">
-    <a href="#img1" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
   {% elif 'qcc' in product.name|lower or 'fpga' in product.name|lower %}
   <div id="img1" class="lightbox">
     <a href="#img2" class="prev">❮</a>
-    <img src="/static/images/qcc_board.jpeg" alt="QCC Core Layout Spec Sheet">
+    <img src="/static/images/QCC_3.jpeg" alt="QCC Core Layout Spec Sheet">
     <a href="#img2" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
   <div id="img2" class="lightbox">
     <a href="#img1" class="prev">❮</a>
-    <img src="/static/images/qcc_schematic.png" alt="Optical Transceiver Bus Diagram">
+    <img src="/static/images/QCC_2.jpeg" alt="Optical Transceiver Bus Diagram">
     <a href="#img1" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
@@ -241,7 +227,7 @@
   </div>
   <div id="img2" class="lightbox">
     <a href="#img1" class="prev">❮</a>
-    <img src="/static/images/quantum_topology.png" alt="Digital Twin UI Layout">
+    <img src="/static/images/primer_kit.jpeg" alt="Digital Twin UI Layout">
     <a href="#img1" class="next">❯</a>
     <a href="#" class="close">✕</a>
   </div>
